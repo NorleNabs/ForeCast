@@ -34,9 +34,15 @@ function CardComponent() {
   return (
     <Container
       className="d-flex justify-content-center w-100 h-100 pb-4 pt-1"
-      style={{ backgroundColor: "#000000ff" }}>
+      style={{}}>
       {weather ? (
-        <div className="bg-primary h-100 w-100 mx-5 mt-3 mb-3 rounded-4">
+        <div
+          className=" h-100 w-100 mx-5 mt-3 mb-3 rounded-4"
+          style={{
+            backgroundColor: "#7f7e7e5d",
+            backdropFilter: "blur(10px)",
+            webkitBackdropFilter: "blur(10px)",
+          }}>
           <div className=" align-items-center p-3 h-100">
             <Row>
               <Col sm={6} className="text-start">

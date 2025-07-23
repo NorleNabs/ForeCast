@@ -1,27 +1,22 @@
-import { Button, Col, Container } from "react-bootstrap";
+import { Stack, Col, Container, Row } from "react-bootstrap";
 import React, { useEffect, useState } from "react";
 import "bootstrap/dist/css/bootstrap.min.css";
 import { Card } from "react-bootstrap";
-import { u } from "framer-motion/client";
 
 function NewsCardComponent() {
-  const [news, setNews] = useState(null);
+  const [articles, setArticles] = useState([]);
   useEffect(() => {
-    const url =
-      "https://newsapi.org/v2/everything?" +
-      "q=Apple&" +
-      "from=2025-07-21&" +
-      "sortBy=popularity&" +
-      "apiKey=31cef06eac7b4e05a4e395da29179c90";
+    // Get today's date and date 7 days ago
 
-    var req = new Request(url);
+    const url = `https://newsapi.org/v2/top-headlines?country=us&apiKey=31cef06eac7b4e05a4e395da29179c90`;
 
     fetch(url)
       .then((res) => res.json())
       .then((data) => {
-        // Just use the first article for example
         if (data.articles && data.articles.length > 0) {
-          setNews(data.articles[0]);
+          setArticles(data.articles);
+          console.log("News API Response:", data.articles);
+          setArticles(data.articles); // <-- Check here
         }
       })
       .catch((err) => console.error("Error fetching news:", err));
@@ -29,22 +24,40 @@ function NewsCardComponent() {
 
   return (
     <Container
-      className="d-flex justify-content-center w-100 h-100 p-3"
-      style={{ backgroundColor: "#0b0b0bff" }}>
-      <Col className="bg-primary h-100 justify-content-center align-items-center me-2">
-        {news?.urlToImage ? (
-          <img
-            src={news.urlToImage}
-            alt={news.title}
-            style={{ width: "100%", height: "auto", objectFit: "cover" }}
-          />
+      className="d-flex justify-content-center p-3 overflow-hidden"
+      style={{}}>
+      <Stack className=" h-100 mx-3" gap={3}>
+        {articles.length > 0 ? (
+          articles.map((article, index) => (
+            <Row
+              key={index}
+              className="rounded-4"
+              style={{
+                minHeight: "20vh",
+                backgroundColor: "#7f7e7e5d",
+                backdropFilter: "blur(10px)",
+                webkitBackdropFilter: "blur(10px)",
+              }}>
+              <Col sm={4} className="">
+                <img
+                  src={article.urlToImage}
+                  alt=""
+                  style={{ width: "100%" }}
+                />
+              </Col>
+              <Col sm={8} className="">
+                <h3 className="fs-5">{article.title}</h3>
+                <span className="fs-5">{article.description}</span>
+              </Col>
+            </Row>
+          ))
         ) : (
-          <p>No image available</p>
+          <p>Loading news...</p>
         )}
-      </Col>
-      <Col className="bg-primary h-100 justify-contetn-center align-items-center ms-2">
-        <p>{news?.source?.id || "Unknown"}</p>
-      </Col>
+
+        <div></div>
+        <div></div>
+      </Stack>
     </Container>
   );
 }

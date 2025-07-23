@@ -12,26 +12,36 @@ function App() {
   return (
     <>
       <NavbarComponent />
-      <Container className="mt-5" style={{ minWidth: "100vw" }}>
+      <Container
+        className="mt-2 mb-4 mx-0"
+        style={{ minWidth: "99vw", margin: "0 auto" }}>
         <Row
-          className="row d-flex justify-content-center"
-          style={{ minHeight: "50vh" }}>
+          className="row d-flex justify-content-center mx-0"
+          style={{ minHeight: "50vh" }}
+          gap={1}>
           <Col
             sm={4}
-            className="justify-content-center align-items-center mx-0">
+            className="justify-content-center align-items-center rounded-3 mx-0"
+            style={{
+              height: "370px",
+            }}>
             <CardComponent />
           </Col>
           <Col
             sm={8}
-            className="justify-content-center align-items-center mx-0">
+            className="justify-content-center align-items-center rounded-3 mx-0"
+            style={{
+              height: "370px",
+              overflowY: "auto",
+              scrollbarWidth: "none",
+              msOverflowStyle: "none",
+            }}>
             <NewsCardComponent />
           </Col>
         </Row>
       </Container>
-      <Container className="mt-3" style={{ minWidth: "100vw" }}>
-        <Row
-          className="d-flex justify-content-center mt-4"
-          style={{ minHeight: "30vh" }}>
+      <Container className="mt-3">
+        <Row className=" justify-content-center" style={{ minHeight: "20vh" }}>
           <Col className="d-flex justify-content-center align-items-center mx-0">
             <ToDoCardComponent />
           </Col>

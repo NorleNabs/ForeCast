@@ -10,11 +10,7 @@ import { IoNewspaperOutline } from "react-icons/io5";
 
 function NavbarComponent() {
   return (
-    <Navbar
-      expand="lg"
-      className="bg-body-tertiary mb-3"
-      fixed="top"
-      data-bs-theme="dark">
+    <Navbar expand="lg" className="bg-body-tertiary mb-5" data-bs-theme="dark">
       <Container fluid className="mx-0" expand="lg">
         <Row className="g-0 w-100">
           <Col sm={6} className="d-flex justify-content-start">

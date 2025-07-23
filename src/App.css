@@ -1,6 +1,11 @@
 #root {
   width: 100%;
   text-align: center;
+  min-height: 100vh;
+  background-image: url("Image/nature-6821966_1920.jpg");
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
 }
 
 .logo {
