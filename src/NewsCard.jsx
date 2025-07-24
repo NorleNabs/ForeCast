@@ -6,8 +6,6 @@ import { Card } from "react-bootstrap";
 function NewsCardComponent() {
   const [articles, setArticles] = useState([]);
   useEffect(() => {
-    // Get today's date and date 7 days ago
-
     const url = `https://newsapi.org/v2/top-headlines?country=us&apiKey=31cef06eac7b4e05a4e395da29179c90`;
 
     fetch(url)
@@ -36,14 +34,17 @@ function NewsCardComponent() {
                 minHeight: "20vh",
                 backgroundColor: "#7f7e7e5d",
                 backdropFilter: "blur(10px)",
-                webkitBackdropFilter: "blur(10px)",
               }}>
               <Col sm={4} className="">
-                <img
-                  src={article.urlToImage}
-                  alt=""
-                  style={{ width: "100%" }}
-                />
+                {article.urlToImage ? (
+                  <img
+                    src={article.urlToImage}
+                    alt=""
+                    style={{ width: "100%" }}
+                  />
+                ) : (
+                  <p>No Image Available</p>
+                )}
               </Col>
               <Col sm={8} className="">
                 <h3 className="fs-5">{article.title}</h3>
