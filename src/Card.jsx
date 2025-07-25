@@ -1,4 +1,4 @@
-import { Col, Container } from "react-bootstrap";
+import { Col, Container, Button } from "react-bootstrap";
 import Form from "react-bootstrap/Form";
 import Row from "react-bootstrap/Row";
 import React, { useEffect, useState } from "react";
@@ -8,19 +8,16 @@ import { CloudsBroken } from "./weathericon/BrokenClouds";
 import { FaLocationDot } from "react-icons/fa6";
 import { WiHumidity } from "react-icons/wi";
 import { WiStrongWind } from "react-icons/wi";
+import SetLocationModal from "./SetLocationModal";
 import Clock from "./Clock";
 import "bootstrap/dist/css/bootstrap.min.css";
 
 function CardComponent() {
   const [weather, setWeather] = useState(null);
-  const [province, setProvince] = useState([]);
-  const [city, setCity] = useState([]);
-  const [selectedProvinceCode, setSelectedProvinceCode] = useState("");
   const [selectedCity, setSelectedCity] = useState("Limay");
+  const [modalShow, setModalShow] = useState(false);
 
   useEffect(() => {
-    const provinceUrl = `https://psgc.gitlab.io/api/provinces/`;
-    const cityUrl = `https://psgc.gitlab.io/api/cities-municipalities/`;
     const API_KEY = "700ff8cb218f7611af24806ddd219352";
     const url = `https://api.openweathermap.org/data/2.5/weather?q=${selectedCity}&appid=${API_KEY}&units=metric`;
 
@@ -31,48 +28,11 @@ function CardComponent() {
         console.log("Weather API Response:", data); // <-- Check here
       })
       .catch((err) => console.error("Error fetching weather:", err));
-
-    fetch(provinceUrl)
-      .then((res) => res.json())
-      .then((data) => {
-        setProvince(data);
-        console.log("Province API Response:", data); // <-- Check here
-      })
-      .catch((err) => console.error("Error fetching weather:", err));
-
-    fetch(cityUrl)
-      .then((res) => res.json())
-      .then((data) => {
-        setCity(data);
-        console.log("City API Response:", data); // <-- Check here
-      })
-      .catch((err) => console.error("Error fetching city:", err));
-  }, [selectedCity]);
+  }, []);
 
   const currentDay = new Date().toLocaleDateString("en-PH", {
     weekday: "long",
   });
-
-  const handleProvinceChange = (e) => {
-    const selectedOption = e.target.options[e.target.selectedIndex];
-    const code = selectedOption.value;
-    const selectedProvince = selectedOption.text;
-
-    console.log("Selected Province Code:", code);
-    console.log("Selected Province Name:", selectedProvince);
-
-    setSelectedProvinceCode(code);
-  };
-  const handleCityChange = (e) => {
-    const selectedOption = e.target.options[e.target.selectedIndex];
-    const code = selectedOption.value;
-    const selectedCi = selectedOption.text;
-
-    console.log("Selected Province Code:", code);
-    console.log("Selected Province Name:", selectedCi);
-
-    setSelectedCity(selectedCi);
-  };
 
   return (
     <Container
@@ -138,32 +98,19 @@ function CardComponent() {
               </Col>
             </Row>
             <Row className="mb-3">
-              <Form.Select
-                aria-label="Default select example"
-                onChange={handleProvinceChange}>
-                <option value="">Province</option>
-                {province.map((prov) => (
-                  <option key={prov.code} value={prov.code}>
-                    {prov.name}
-                  </option>
-                ))}
-              </Form.Select>
-              <Form.Select
-                aria-label="Default select example"
-                onChange={handleCityChange}>
-                <option value="">City</option>
-                {selectedProvinceCode ? (
-                  city
-                    .filter((cty) => cty.provinceCode === selectedProvinceCode)
-                    .map((cty) => (
-                      <option key={cty.code} value={cty.code}>
-                        {cty.name}
-                      </option>
-                    ))
-                ) : (
-                  <option disabled>Select a province first</option>
-                )}
-              </Form.Select>
+              <>
+                <Button
+                  variant="primary"
+                  onClick={() => setModalShow(true)}
+                  className="mt-2">
+                  Set Location
+                </Button>
+
+                <SetLocationModal
+                  show={modalShow}
+                  onHide={() => setModalShow(false)}
+                />
+              </>
             </Row>
           </div>
         </div>

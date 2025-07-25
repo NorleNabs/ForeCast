@@ -5,8 +5,10 @@ import { Card } from "react-bootstrap";
 
 function NewsCardComponent() {
   const [articles, setArticles] = useState([]);
+
   useEffect(() => {
-    const url = `https://newsapi.org/v2/top-headlines?country=us&apiKey=31cef06eac7b4e05a4e395da29179c90`;
+    const url = `https://newsapi.org/v2/everything?q=philippines&language=en&apiKey=31cef06eac7b4e05a4e395da29179c90
+`;
 
     fetch(url)
       .then((res) => res.json())
@@ -24,7 +26,7 @@ function NewsCardComponent() {
     <Container
       className="d-flex justify-content-center p-3 overflow-hidden"
       style={{}}>
-      <Stack className=" h-100 mx-3" gap={3}>
+      <Stack className="h-100 mx-3" gap={3}>
         {articles.length > 0 ? (
           articles.map((article, index) => (
             <Row

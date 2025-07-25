@@ -3,6 +3,8 @@ import CardComponent from "./Card";
 import NewsCardComponent from "./NewsCard";
 import NavbarComponent from "./Navbar";
 import ToDoCardComponent from "./ToDoCard";
+import { Button } from "react-bootstrap";
+import MyVerticallyCenteredModal from "./TodoModal";
 import "./App.css";
 import Row from "react-bootstrap/Row";
 import Col from "react-bootstrap/Col";
@@ -42,6 +44,11 @@ function App() {
       </Container>
       <Container className="mt-3">
         <Row className=" justify-content-center" style={{ minHeight: "20vh" }}>
+          <h4
+            className="mb-0 text-center font-bold"
+            style={{ color: "#ffffffe5" }}>
+            This Weeks To-Do List
+          </h4>
           <Col className="d-flex justify-content-center align-items-center mx-0">
             <ToDoCardComponent />
           </Col>
