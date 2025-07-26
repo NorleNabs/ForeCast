@@ -14,21 +14,55 @@ import "bootstrap/dist/css/bootstrap.min.css";
 
 function CardComponent() {
   const [weather, setWeather] = useState(null);
-  const [selectedCity, setSelectedCity] = useState("Limay");
+  const [selectedCity, setSelectedCity] = useState("");
   const [modalShow, setModalShow] = useState(false);
+  const [users, setUsers] = useState([]);
+  const [location, setLocations] = useState([]);
 
   useEffect(() => {
+    fetch("http://localhost:8000/api/users")
+      .then((res) => res.json())
+      .then((data) => setUsers(data))
+      .catch((err) => console.error("Failed to fetch users:", err));
+  }, []);
+
+  useEffect(() => {
+    const fetchLocations = async () => {
+      try {
+        const res = await fetch("http://localhost:8000/api/locations");
+        if (!res.ok) throw new Error("Failed to fetch locations");
+        const data = await res.json();
+        setLocations(data);
+      } catch (err) {
+        console.error("Error:", err);
+      }
+    };
+
+    fetchLocations();
+  }, []);
+
+  useEffect(() => {
+    if (location.length >= 1) {
+      setSelectedCity(location[0].city.trim());
+      console.log(location[0].city.trim());
+    }
+  }, [location]);
+
+  useEffect(() => {
+    const trimmedCity = selectedCity.trim();
+    if (!trimmedCity) return;
+
     const API_KEY = "700ff8cb218f7611af24806ddd219352";
-    const url = `https://api.openweathermap.org/data/2.5/weather?q=${selectedCity}&appid=${API_KEY}&units=metric`;
+    const url = `https://api.openweathermap.org/data/2.5/weather?q=${trimmedCity}&appid=${API_KEY}&units=metric`;
 
     fetch(url)
       .then((res) => res.json())
       .then((data) => {
         setWeather(data);
-        console.log("Weather API Response:", data); // <-- Check here
+        console.log("Weather API Response:", data);
       })
       .catch((err) => console.error("Error fetching weather:", err));
-  }, []);
+  }, [selectedCity]); // ✅ Make sure this effect depends on selectedCity
 
   const currentDay = new Date().toLocaleDateString("en-PH", {
     weekday: "long",
@@ -64,7 +98,9 @@ function CardComponent() {
               ) : weather.weather?.[0]?.main === "Clear" ? (
                 <SunnyOutlineLoop style={{ fontSize: "3rem" }} />
               ) : weather.weather?.[0]?.main === "Broken" ? (
-                <CloudsBroken />
+                <CloudsBroken style={{ fontSize: "3rem" }} />
+              ) : weather.weather?.[0]?.main === "Clouds" ? (
+                <CloudsBroken style={{ fontSize: "3rem" }} />
               ) : null}
               <p>
                 {weather.weather?.[0]?.description
