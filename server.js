@@ -22,7 +22,7 @@ app.get("/api/users", async (req, res) => {
   }
 });
 
-app.post("/api/users", async (req, res) => {
+app.post("/api/signup", async (req, res) => {
   try {
     const { username, password, email, province, city, defaultnews } = req.body;
     const setLocation = new SetUsers({
@@ -40,13 +40,20 @@ app.post("/api/users", async (req, res) => {
   }
 });
 
-app.get("/api/locations", async (req, res) => {
+app.post("/api/login", async (req, res) => {
+  const { username, password } = req.body;
+
   try {
-    const location = await Location.find(); // ✅ this needs User to be imported
-    res.json(location);
-    console.log(location);
+    const user = await SetUsers.findOne({ username });
+
+    if (!user || user.password !== password) {
+      return res.status(401).json({ message: "Invalid username or password" });
+    }
+
+    // ✅ Successful login
+    res.json({ message: "Login successful", user });
   } catch (err) {
-    res.status(500).json({ message: err.message });
+    res.status(500).json({ message: "Server error", error: err.message });
   }
 });
 

@@ -8,7 +8,7 @@ import { CloudsBroken } from "./weathericon/BrokenClouds";
 import { FaLocationDot } from "react-icons/fa6";
 import { WiHumidity } from "react-icons/wi";
 import { WiStrongWind } from "react-icons/wi";
-import SetLocationModal from "./SetLocationModal";
+import SetLocationModal from "./LogIn";
 import Clock from "./Clock";
 import "bootstrap/dist/css/bootstrap.min.css";
 
@@ -141,11 +141,6 @@ function CardComponent() {
                   className="mt-2">
                   Set Location
                 </Button>
-
-                <SetLocationModal
-                  show={modalShow}
-                  onHide={() => setModalShow(false)}
-                />
               </>
             </Row>
           </div>

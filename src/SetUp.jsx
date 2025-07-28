@@ -73,7 +73,7 @@ function SetUpComponent() {
   const handleSubmit = async (e) => {
     e.preventDefault();
     try {
-      const res = await fetch("http://localhost:8000/api/users", {
+      const res = await fetch("http://localhost:8000/api/signup", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify(location),

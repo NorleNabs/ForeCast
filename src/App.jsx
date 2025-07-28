@@ -10,18 +10,17 @@ import "./App.css";
 import Row from "react-bootstrap/Row";
 import Col from "react-bootstrap/Col";
 import Container from "react-bootstrap/Container";
+import LoginPage from "./LogIn";
 
-const DEV_MODE = false;
+const DEV_MODE = 3;
 
 function App() {
+  const [isLoggedIn, setIsLoggedIn] = useState(false);
+
   return (
     <>
-      {DEV_MODE ? (
-        <Container
-          className="mt-3 align-content-center"
-          style={{ minHeight: "100vh", margin: "0 auto" }}>
-          <SetUpComponent />
-        </Container>
+      {!isLoggedIn ? (
+        <LoginPage onLogin={() => setIsLoggedIn(true)} />
       ) : (
         <>
           <NavbarComponent />
