@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import CardComponent from "./Card";
 import NewsCardComponent from "./NewsCard";
 import NavbarComponent from "./Navbar";
@@ -17,13 +17,30 @@ const DEV_MODE = 3;
 function App() {
   const [isLoggedIn, setIsLoggedIn] = useState(false);
 
+  useEffect(() => {
+    const loggedIn = localStorage.getItem("isLoggedIn");
+    if (loggedIn === "true") {
+      setIsLoggedIn(true);
+    }
+  }, []);
+
+  const handleLogout = () => {
+    localStorage.removeItem("isLoggedIn");
+    setIsLoggedIn(false);
+  };
+
   return (
     <>
       {!isLoggedIn ? (
-        <LoginPage onLogin={() => setIsLoggedIn(true)} />
+        <LoginPage
+          onLogin={() => {
+            localStorage.setItem("isLoggedIn", "true");
+            setIsLoggedIn(true);
+          }}
+        />
       ) : (
         <>
-          <NavbarComponent />
+          <NavbarComponent onLogout={handleLogout} />
           <Container
             className="mt-2 mb-4 mx-0"
             style={{ minWidth: "99vw", margin: "0 auto" }}>

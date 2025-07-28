@@ -31,7 +31,7 @@ function LoginPage({ onLogin }) {
   };
 
   return (
-    <div className="container mt-5">
+    <div className="container mt-5 ">
       <h2>Login</h2>
       <Form onSubmit={handleLogin}>
         <Form.Group className="mb-3">

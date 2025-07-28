@@ -8,7 +8,12 @@ import Col from "react-bootstrap/Col";
 import { FaCloudSun } from "react-icons/fa";
 import { IoNewspaperOutline } from "react-icons/io5";
 
-function NavbarComponent() {
+function NavbarComponent({ onLogout }) {
+  const handleLogout = () => {
+    localStorage.removeItem("isLoggedIn");
+    setIsLoggedIn(false);
+  };
+
   return (
     <Navbar expand="lg" className="bg-body-tertiary mb-5" data-bs-theme="dark">
       <Container fluid className="mx-0" expand="lg">
@@ -49,8 +54,8 @@ function NavbarComponent() {
                       Something
                     </NavDropdown.Item>
                     <NavDropdown.Divider />
-                    <NavDropdown.Item href="#action/3.4">
-                      Separated link
+                    <NavDropdown.Item onClick={onLogout}>
+                      Log Out
                     </NavDropdown.Item>
                   </NavDropdown>
                 </Nav>
