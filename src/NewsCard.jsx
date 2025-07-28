@@ -7,8 +7,7 @@ function NewsCardComponent() {
   const [articles, setArticles] = useState([]);
 
   useEffect(() => {
-    const url = `https://newsapi.org/v2/everything?q=philippines&language=en&apiKey=31cef06eac7b4e05a4e395da29179c90
-`;
+    const url = `https://newsapi.org/v2/everything?q=philippines&language=en&sortBy=publishedAt&apiKey=31cef06eac7b4e05a4e395da29179c90`;
 
     fetch(url)
       .then((res) => res.json())

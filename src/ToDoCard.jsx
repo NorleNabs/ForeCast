@@ -100,7 +100,7 @@ function ToDoCardComponent() {
             variant="primary"
             onClick={() => handleShow(next7Days[2])}
             style={{ backgroundColor: "#78787806", border: "none" }}>
-            {next7Days[1]}
+            {next7Days[2]}
           </Button>
 
           <MyVerticallyCenteredModal
@@ -119,7 +119,7 @@ function ToDoCardComponent() {
             variant="primary"
             onClick={() => handleShow(next7Days[3])}
             style={{ backgroundColor: "#78787806", border: "none" }}>
-            {next7Days[1]}
+            {next7Days[3]}
           </Button>
 
           <MyVerticallyCenteredModal
@@ -138,7 +138,7 @@ function ToDoCardComponent() {
             variant="primary"
             onClick={() => handleShow(next7Days[4])}
             style={{ backgroundColor: "#78787806", border: "none" }}>
-            {next7Days[1]}
+            {next7Days[4]}
           </Button>
 
           <MyVerticallyCenteredModal
@@ -157,7 +157,7 @@ function ToDoCardComponent() {
             variant="primary"
             onClick={() => handleShow(next7Days[5])}
             style={{ backgroundColor: "#78787806", border: "none" }}>
-            {next7Days[1]}
+            {next7Days[5]}
           </Button>
 
           <MyVerticallyCenteredModal
@@ -176,7 +176,7 @@ function ToDoCardComponent() {
             variant="primary"
             onClick={() => handleShow(next7Days[6])}
             style={{ backgroundColor: "#78787806", border: "none" }}>
-            {next7Days[1]}
+            {next7Days[6]}
           </Button>
 
           <MyVerticallyCenteredModal

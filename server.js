@@ -2,8 +2,7 @@ import express from "express";
 import mongoose from "mongoose";
 import dotenv from "dotenv";
 import cors from "cors";
-import User from "./Models/User.js";
-import Location from "./Models/SetLocation.js";
+import SetUsers from "./Models/User.js";
 
 dotenv.config();
 const app = express();
@@ -15,7 +14,7 @@ app.use(express.json());
 
 app.get("/api/users", async (req, res) => {
   try {
-    const users = await User.find(); // ✅ this needs User to be imported
+    const users = await SetUsers.find(); // ✅ this needs User to be imported
     res.json(users);
     console.log(users);
   } catch (err) {
@@ -23,10 +22,17 @@ app.get("/api/users", async (req, res) => {
   }
 });
 
-app.post("/api/locations", async (req, res) => {
+app.post("/api/users", async (req, res) => {
   try {
-    const { province, city } = req.body;
-    const setLocation = new Location({ province, city });
+    const { username, password, email, province, city, defaultnews } = req.body;
+    const setLocation = new SetUsers({
+      username,
+      password,
+      email,
+      province,
+      city,
+      defaultnews,
+    });
     const savedLocation = await setLocation.save();
     res.status(201).json(savedLocation);
   } catch (err) {

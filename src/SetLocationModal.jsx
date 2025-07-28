@@ -1,7 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { Modal, Button } from "react-bootstrap";
 import Form from "react-bootstrap/Form";
-import PlaceDropDown from "./PlaceDropDown";
 
 function SetLocationModal(props) {
   const [province, setProvince] = useState([]);
@@ -63,7 +62,7 @@ function SetLocationModal(props) {
   const handleSubmit = async (e) => {
     e.preventDefault();
     try {
-      const res = await fetch("http://localhost:8000/api/locations", {
+      const res = await fetch("http://localhost:8000/api/users", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify(location),
