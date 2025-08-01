@@ -18,6 +18,8 @@ function CardComponent() {
   const user = JSON.parse(localStorage.getItem("user"));
 
   useEffect(() => {
+    if (!user?.city || weather) return; // Already has weather, no need to fetch again
+
     const API_KEY = "700ff8cb218f7611af24806ddd219352";
     const url = `https://api.openweathermap.org/data/2.5/weather?q=${user.city}&appid=${API_KEY}&units=metric`;
 
@@ -25,10 +27,10 @@ function CardComponent() {
       .then((res) => res.json())
       .then((data) => {
         setWeather(data);
-        console.log("Weather API Response:", data);
+        console.log("✅ Weather API fetched:", data);
       })
       .catch((err) => console.error("Error fetching weather:", err));
-  }, []); // ✅ Make sure this effect depends on selectedCity
+  }, [user?.city, weather]);
 
   const currentDay = new Date().toLocaleDateString("en-PH", {
     weekday: "long",

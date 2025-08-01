@@ -5,9 +5,10 @@ import { Card } from "react-bootstrap";
 
 function NewsCardComponent() {
   const [articles, setArticles] = useState([]);
+  const user = JSON.parse(localStorage.getItem("user"));
 
   useEffect(() => {
-    const url = `https://newsapi.org/v2/everything?q=philippines&language=en&sortBy=publishedAt&apiKey=31cef06eac7b4e05a4e395da29179c90`;
+    const url = `https://newsapi.org/v2/everything?q=${user.defaultnews}&language=en&sortBy=publishedAt&apiKey=31cef06eac7b4e05a4e395da29179c90`;
 
     fetch(url)
       .then((res) => res.json())
@@ -15,7 +16,6 @@ function NewsCardComponent() {
         if (data.articles && data.articles.length > 0) {
           setArticles(data.articles);
           console.log("News API Response:", data.articles);
-          setArticles(data.articles); // <-- Check here
         }
       })
       .catch((err) => console.error("Error fetching news:", err));
