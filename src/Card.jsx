@@ -14,46 +14,12 @@ import "bootstrap/dist/css/bootstrap.min.css";
 
 function CardComponent() {
   const [weather, setWeather] = useState(null);
-  const [selectedCity, setSelectedCity] = useState("");
-  const [modalShow, setModalShow] = useState(false);
-  const [users, setUsers] = useState([]);
-  const [location, setLocations] = useState([]);
+
+  const user = JSON.parse(localStorage.getItem("user"));
 
   useEffect(() => {
-    fetch("http://localhost:8000/api/users")
-      .then((res) => res.json())
-      .then((data) => setUsers(data))
-      .catch((err) => console.error("Failed to fetch users:", err));
-  }, []);
-
-  useEffect(() => {
-    const fetchLocations = async () => {
-      try {
-        const res = await fetch("http://localhost:8000/api/users");
-        if (!res.ok) throw new Error("Failed to fetch locations");
-        const data = await res.json();
-        setLocations(data);
-      } catch (err) {
-        console.error("Error:", err);
-      }
-    };
-
-    fetchLocations();
-  }, []);
-
-  useEffect(() => {
-    if (location.length >= 1) {
-      setSelectedCity(location[0].city.trim());
-      console.log(location[0].city.trim());
-    }
-  }, [location]);
-
-  useEffect(() => {
-    const trimmedCity = selectedCity.trim();
-    if (!trimmedCity) return;
-
     const API_KEY = "700ff8cb218f7611af24806ddd219352";
-    const url = `https://api.openweathermap.org/data/2.5/weather?q=${trimmedCity}&appid=${API_KEY}&units=metric`;
+    const url = `https://api.openweathermap.org/data/2.5/weather?q=${user.city}&appid=${API_KEY}&units=metric`;
 
     fetch(url)
       .then((res) => res.json())
@@ -62,11 +28,13 @@ function CardComponent() {
         console.log("Weather API Response:", data);
       })
       .catch((err) => console.error("Error fetching weather:", err));
-  }, [selectedCity]); // ✅ Make sure this effect depends on selectedCity
+  }, []); // ✅ Make sure this effect depends on selectedCity
 
   const currentDay = new Date().toLocaleDateString("en-PH", {
     weekday: "long",
   });
+
+  console.log(user.username); // or user.id, user.email, etc.
 
   return (
     <Container
@@ -113,7 +81,7 @@ function CardComponent() {
                 <p className="text-start my-1">
                   <FaLocationDot className="mx-1" />
                   {""}
-                  {selectedCity}
+                  {user.city}
                 </p>
                 <p className="text-start my-1">
                   <WiHumidity className="mx-1" />
@@ -132,16 +100,6 @@ function CardComponent() {
                   {weather.main?.temp ? `${weather.main.temp}°C` : "--"}
                 </p>
               </Col>
-            </Row>
-            <Row className="mb-3">
-              <>
-                <Button
-                  variant="primary"
-                  onClick={() => setModalShow(true)}
-                  className="mt-2">
-                  Set Location
-                </Button>
-              </>
             </Row>
           </div>
         </div>

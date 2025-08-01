@@ -99,18 +99,19 @@ function SetUpComponent() {
   };
 
   return (
-    <>
-      <Row>
+    <div className="w-100 h-100">
+      <Row className="w-100 h-100 my-4">
         <h3 style={{ color: "white" }}>Lets Set Things Up</h3>
       </Row>
-      <Row>
+      <Row className="w-100 h-100">
         <Container className="d-flex justify-content-center">
           <Form
             onSubmit={handleSubmit}
-            className="justify-content-center h-100 rounded-4 p-4"
+            className="justify-content-center h-100 rounded-4 p-5"
             style={{
               backgroundColor: "#7f7e7e5d",
               backdropFilter: "blur(10px)",
+              minHeight: "80vh",
             }}>
             <Form.Group
               as={Row}
@@ -252,7 +253,7 @@ function SetUpComponent() {
                 />
               </Col>
               <label style={{ color: "white" }}>
-                Go back to <a href="/home">Log In</a>
+                Go back to <a href="/">Log In</a>
               </label>
             </Form.Group>
 
@@ -266,7 +267,7 @@ function SetUpComponent() {
           </Form>
         </Container>
       </Row>
-    </>
+    </div>
   );
 }
 

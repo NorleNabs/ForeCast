@@ -12,6 +12,7 @@ const MONGOURL = process.env.MONGO_URL;
 app.use(cors());
 app.use(express.json());
 
+//Users Fetch
 app.get("/api/users", async (req, res) => {
   try {
     const users = await SetUsers.find(); // ✅ this needs User to be imported
@@ -22,6 +23,7 @@ app.get("/api/users", async (req, res) => {
   }
 });
 
+// Sign up
 app.post("/api/signup", async (req, res) => {
   try {
     const { username, password, email, province, city, defaultnews } = req.body;
@@ -40,6 +42,7 @@ app.post("/api/signup", async (req, res) => {
   }
 });
 
+// Log in
 app.post("/api/login", async (req, res) => {
   const { username, password } = req.body;
 
@@ -50,8 +53,16 @@ app.post("/api/login", async (req, res) => {
       return res.status(401).json({ message: "Invalid username or password" });
     }
 
-    // ✅ Successful login
-    res.json({ message: "Login successful", user });
+    res.json({
+      message: "Login successful",
+      user: {
+        id: user._id,
+        username: user.username,
+        email: user.email,
+        city: user.city,
+        defaultnews: user.defaultnews,
+      },
+    });
   } catch (err) {
     res.status(500).json({ message: "Server error", error: err.message });
   }

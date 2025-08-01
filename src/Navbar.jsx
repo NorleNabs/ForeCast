@@ -7,12 +7,14 @@ import Row from "react-bootstrap/Row";
 import Col from "react-bootstrap/Col";
 import { FaCloudSun } from "react-icons/fa";
 import { IoNewspaperOutline } from "react-icons/io5";
+import { IoPerson } from "react-icons/io5";
 
 function NavbarComponent({ onLogout }) {
   const handleLogout = () => {
     localStorage.removeItem("isLoggedIn");
     setIsLoggedIn(false);
   };
+  const user = JSON.parse(localStorage.getItem("user"));
 
   return (
     <Navbar expand="lg" className="bg-body-tertiary mb-5" data-bs-theme="dark">
@@ -35,14 +37,18 @@ function NavbarComponent({ onLogout }) {
             className="d-flex justify-content-center align-items-center">
             <div>
               <Navbar.Toggle aria-controls="basic-navbar-nav" />
+
               <Navbar.Collapse id="basic-navbar-nav">
                 <Nav className="me-auto">
-                  <Nav.Link href="#home" className="fs-5">
+                  <Nav.Link href="#home" className="mx-2 fs-5">
                     <FaCloudSun /> Weather
                   </Nav.Link>
-                  <Nav.Link href="#link" className="fs-5">
+                  <Nav.Link href="#link" className="mx-2 fs-5">
                     <IoNewspaperOutline /> News
                   </Nav.Link>
+                  <Navbar.Text className="mx-2 fs-5">
+                    <IoPerson /> {user.username}
+                  </Navbar.Text>
                   <NavDropdown id="basic-nav-dropdown" className="fs-5">
                     <NavDropdown.Item href="#action/3.1">
                       Action
