@@ -7,6 +7,13 @@ const setUserSchema = new mongoose.Schema({
   province: String,
   city: String,
   defaultnews: String,
+  todo: [
+    {
+      date: String,
+      time: String,
+      task: String,
+    },
+  ],
 });
 
 const SetUsers = mongoose.model("Users", setUserSchema);

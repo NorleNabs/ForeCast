@@ -9,13 +9,24 @@ import {
 } from "react-bootstrap";
 import React, { useEffect, useState } from "react";
 
-function SetTime() {
-  const [selectedHour, setSelectedHour] = useState("Set Hours");
-  const [selectedMinute, setSelectedMinute] = useState("Set Minutes");
-  const [selectedTimeFrame, setSelectedTimeFrame] = useState("Set Time Frame");
-
+function SetTime({
+  selectedHour,
+  setSelectedHour,
+  selectedMinute,
+  setSelectedMinute,
+  selectedTimeFrame,
+  setSelectedTimeFrame,
+}) {
   const handleSelectHour = (eventKey) => {
     setSelectedHour(eventKey);
+  };
+
+  const handleSelectMinute = (eventKey) => {
+    setSelectedMinute(eventKey);
+  };
+
+  const handleSelectTimeFrame = (eventKey) => {
+    setSelectedTimeFrame(eventKey);
   };
 
   const hoursOption = [];
@@ -28,12 +39,8 @@ function SetTime() {
     );
   }
 
-  const handleSelectMinute = (eventKey) => {
-    setSelectedMinute(eventKey);
-  };
-
   const minuteOptions = [];
-  for (let i = 1; i <= 59; i++) {
+  for (let i = 0; i <= 59; i++) {
     const paddedMinute = String(i).padStart(2, "0");
     minuteOptions.push(
       <Dropdown.Item key={i} eventKey={paddedMinute}>
@@ -42,35 +49,33 @@ function SetTime() {
     );
   }
 
-  const handleSelectTimeFrame = (eventKey) => {
-    setSelectedTimeFrame(eventKey);
-  };
-
   return (
-    <Container>
+    <Container className="d-flex justify-content-center align-items-center">
       <Dropdown onSelect={handleSelectHour}>
         <Dropdown.Toggle variant="secondary" id="dropdown-hours">
           {selectedHour}
         </Dropdown.Toggle>
-
-        <Dropdown.Menu style={{ maxHeight: "200px", overflowY: "auto" }}>
+        <Dropdown.Menu style={{ maxHeight: "100px", overflowY: "auto" }}>
           {hoursOption}
         </Dropdown.Menu>
       </Dropdown>
+
+      <p className="mt-2 fs-3">:</p>
+
       <Dropdown onSelect={handleSelectMinute}>
         <Dropdown.Toggle variant="secondary" id="dropdown-minutes">
           {selectedMinute}
         </Dropdown.Toggle>
-
-        <Dropdown.Menu style={{ maxHeight: "200px", overflowY: "auto" }}>
+        <Dropdown.Menu style={{ maxHeight: "100px", overflowY: "auto" }}>
           {minuteOptions}
         </Dropdown.Menu>
       </Dropdown>
-      <Dropdown onSelect={handleSelectTimeFrame}>
+
+      <Dropdown onSelect={handleSelectTimeFrame} className="mx-2">
         <Dropdown.Toggle variant="secondary" id="dropdown-TimeFrame">
           {selectedTimeFrame}
         </Dropdown.Toggle>
-        <Dropdown.Menu style={{ maxHeight: "200px", overflowY: "auto" }}>
+        <Dropdown.Menu>
           <Dropdown.Item eventKey="AM">AM</Dropdown.Item>
           <Dropdown.Item eventKey="PM">PM</Dropdown.Item>
         </Dropdown.Menu>

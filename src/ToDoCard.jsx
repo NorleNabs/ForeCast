@@ -32,7 +32,6 @@ function ToDoCardComponent() {
     return days;
   };
 
-  // 2. Use it in useState
   const [next7Days, setNext7Days] = useState(getNext7Days());
 
   useEffect(() => {
@@ -47,6 +46,7 @@ function ToDoCardComponent() {
 
     return () => clearTimeout(timeout);
   }, [next7Days]);
+
   return (
     <Container className="d-flex justify-content-center w-100 h-100">
       <Stack direction="horizontal" gap={3} className="w-100 h-100  ">
