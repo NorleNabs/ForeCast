@@ -6,16 +6,37 @@ import { FaPlus } from "react-icons/fa";
 
 const user = JSON.parse(localStorage.getItem("user"));
 
-function AddToDoModal({ show, onHide }) {
+function AddToDoModal({ show, onHide, todaydate }) {
   const [selectedHour, setSelectedHour] = useState("01");
   const [selectedMinute, setSelectedMinute] = useState("00");
   const [selectedTimeFrame, setSelectedTimeFrame] = useState("AM");
+  const [date, setDate] = useState(todaydate);
+  const [task, setTask] = useState("");
 
-  const handleSave = () => {
+  const handleSave = async () => {
     const fullTime = `${selectedHour}:${selectedMinute} ${selectedTimeFrame}`;
-    console.log("Selected Time:", fullTime);
-    // Save logic here
-    onHide();
+    const today = new Date().toLocaleDateString(); // or use a proper date input if needed
+    const userId = user?.id;
+
+    try {
+      const response = await fetch(
+        `http://localhost:8000/api/users/${userId}/todo`,
+        {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify({ date: todaydate, time: fullTime, task: task }),
+        }
+      );
+
+      if (!response.ok) throw new Error("Failed to add task");
+      const updatedUser = await response.json();
+      console.log("Updated user:", updatedUser);
+      onHide(); // Close modal
+    } catch (err) {
+      console.error("Error saving task:", err.message);
+    }
   };
 
   return (
@@ -37,6 +58,8 @@ function AddToDoModal({ show, onHide }) {
             as="textarea"
             rows={3}
             placeholder="Add Your Task Here"
+            value={task}
+            onChange={(e) => setTask(e.target.value)}
           />
         </Form.Group>
       </Modal.Body>

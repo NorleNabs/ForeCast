@@ -68,6 +68,51 @@ app.post("/api/login", async (req, res) => {
   }
 });
 
+//add todo list
+app.post("/api/users/:id/todo", async (req, res) => {
+  const { date, time, task } = req.body;
+
+  // Validate request body
+  if (!date || !time || !task) {
+    return res
+      .status(400)
+      .json({ error: "Date, time, and task are required." });
+  }
+
+  try {
+    const user = await SetUsers.findByIdAndUpdate(
+      req.params.id,
+      { $push: { todo: { date, time, task } } },
+      { new: true }
+    );
+
+    if (!user) {
+      return res.status(404).json({ error: "User not found." });
+    }
+
+    res.status(200).json({
+      message: "Todo added successfully.",
+      todo: user.todo,
+    });
+  } catch (err) {
+    res.status(500).json({ error: "Server error.", details: err.message });
+  }
+});
+
+//fetch todo list
+app.get("/api/users/:id/todo", async (req, res) => {
+  try {
+    const userId = req.params.id;
+    const user = await SetUsers.findById(userId);
+
+    if (!user) return res.status(404).json({ message: "User not found" });
+
+    res.json(user.todo || []);
+  } catch (err) {
+    res.status(500).json({ message: err.message });
+  }
+});
+
 mongoose
   .connect(MONGOURL)
   .then(() => {
