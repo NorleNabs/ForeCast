@@ -45,14 +45,41 @@ function MyVerticallyCenteredModal({ show, onHide, activeDay }) {
           </Button>
         </div>
       </Modal.Header>
-      <Modal.Body className="d-flex justify-content-center">
+      <Modal.Body
+        className="d-flex justify-content-center"
+        style={{ maxHeight: "400px", overflowY: "auto", width: "100%" }}>
         {todos.some((todo) => todo.date === activeDay) ? (
-          <div>
+          <div style={{ width: "100%" }}>
             {todos
               .filter((todo) => todo.date === activeDay)
               .map((todo, i) => (
-                <div key={i}>
-                  {todo.time} - {todo.task}
+                <div
+                  key={i}
+                  style={{
+                    borderBottom: "solid",
+                    borderTop: "solid",
+                    marginTop: "0",
+                  }}>
+                  <div className="d-flex justify-content-start mt-4 mb-0">
+                    <div className="d-flex justify-content-center mx-2">
+                      <span className="fw-bold">From - </span>
+                      <p>{todo.Fromtime}</p>
+                    </div>
+                    <div className="d-flex justify-content-center mx-2">
+                      <span className="fw-bold">To - </span>
+                      <p>{todo.Totime}</p>
+                    </div>
+                  </div>
+                  <span className="fw-bold mx-2 mt-0">Task</span>
+                  <div
+                    style={{
+                      minHeight: "10vh",
+                      minWidth: "30vw",
+                      border: "solid",
+                    }}
+                    className="mb-4">
+                    <p className="mx-2">{todo.task}</p>
+                  </div>
                 </div>
               ))}
           </div>
@@ -68,6 +95,7 @@ function MyVerticallyCenteredModal({ show, onHide, activeDay }) {
           todaydate={activeDay}
         />
       </Modal.Body>
+
       <Modal.Footer>
         <Button onClick={onHide}>Close</Button>
       </Modal.Footer>

@@ -10,76 +10,150 @@ import {
 import React, { useEffect, useState } from "react";
 
 function SetTime({
-  selectedHour,
-  setSelectedHour,
-  selectedMinute,
-  setSelectedMinute,
-  selectedTimeFrame,
-  setSelectedTimeFrame,
+  ToselectedHour,
+  setToSelectedHour,
+  ToselectedMinute,
+  setToSelectedMinute,
+  ToselectedTimeFrame,
+  setToSelectedTimeFrame,
+  FromselectedHour,
+  setFromSelectedHour,
+  FromselectedMinute,
+  setFromSelectedMinute,
+  FromselectedTimeFrame,
+  setFromSelectedTimeFrame,
 }) {
-  const handleSelectHour = (eventKey) => {
-    setSelectedHour(eventKey);
+  const handleToSelectHour = (eventKey) => {
+    setToSelectedHour(eventKey);
   };
 
-  const handleSelectMinute = (eventKey) => {
-    setSelectedMinute(eventKey);
+  const handleToSelectMinute = (eventKey) => {
+    setToSelectedMinute(eventKey);
   };
 
-  const handleSelectTimeFrame = (eventKey) => {
-    setSelectedTimeFrame(eventKey);
+  const handleToSelectTimeFrame = (eventKey) => {
+    setToSelectedTimeFrame(eventKey);
   };
 
-  const hoursOption = [];
+  const handleFromSelectHour = (eventKey) => {
+    setFromSelectedHour(eventKey);
+  };
+
+  const handleFromSelectMinute = (eventKey) => {
+    setFromSelectedMinute(eventKey);
+  };
+
+  const handleFromSelectTimeFrame = (eventKey) => {
+    setFromSelectedTimeFrame(eventKey);
+  };
+
+  const TohoursOption = [];
   for (let i = 1; i <= 12; i++) {
-    const paddedHour = String(i).padStart(2, "0");
-    hoursOption.push(
-      <Dropdown.Item eventKey={paddedHour} key={i}>
-        {paddedHour}
+    const TopaddedHour = String(i).padStart(2, "0");
+    TohoursOption.push(
+      <Dropdown.Item eventKey={TopaddedHour} key={i}>
+        {TopaddedHour}
       </Dropdown.Item>
     );
   }
 
-  const minuteOptions = [];
+  const TominuteOptions = [];
   for (let i = 0; i <= 59; i++) {
-    const paddedMinute = String(i).padStart(2, "0");
-    minuteOptions.push(
-      <Dropdown.Item key={i} eventKey={paddedMinute}>
-        {paddedMinute}
+    const TopaddedMinute = String(i).padStart(2, "0");
+    TominuteOptions.push(
+      <Dropdown.Item key={i} eventKey={TopaddedMinute}>
+        {TopaddedMinute}
+      </Dropdown.Item>
+    );
+  }
+
+  const FromhoursOption = [];
+  for (let i = 1; i <= 12; i++) {
+    const FrompaddedHour = String(i).padStart(2, "0");
+    FromhoursOption.push(
+      <Dropdown.Item eventKey={FrompaddedHour} key={i}>
+        {FrompaddedHour}
+      </Dropdown.Item>
+    );
+  }
+
+  const FromminuteOptions = [];
+  for (let i = 0; i <= 59; i++) {
+    const FrompaddedMinute = String(i).padStart(2, "0");
+    FromminuteOptions.push(
+      <Dropdown.Item key={i} eventKey={FrompaddedMinute}>
+        {FrompaddedMinute}
       </Dropdown.Item>
     );
   }
 
   return (
-    <Container className="d-flex justify-content-center align-items-center">
-      <Dropdown onSelect={handleSelectHour}>
-        <Dropdown.Toggle variant="secondary" id="dropdown-hours">
-          {selectedHour}
-        </Dropdown.Toggle>
-        <Dropdown.Menu style={{ maxHeight: "100px", overflowY: "auto" }}>
-          {hoursOption}
-        </Dropdown.Menu>
-      </Dropdown>
+    <Container>
+      <p>From</p>
+      <Container className="d-flex justify-content-center align-items-center">
+        <Dropdown onSelect={handleFromSelectHour}>
+          <Dropdown.Toggle variant="secondary" id="dropdown-hours">
+            {FromselectedHour}
+          </Dropdown.Toggle>
+          <Dropdown.Menu style={{ maxHeight: "100px", overflowY: "auto" }}>
+            {FromhoursOption}
+          </Dropdown.Menu>
+        </Dropdown>
 
-      <p className="mt-2 fs-3">:</p>
+        <p className="mt-2 fs-3">:</p>
 
-      <Dropdown onSelect={handleSelectMinute}>
-        <Dropdown.Toggle variant="secondary" id="dropdown-minutes">
-          {selectedMinute}
-        </Dropdown.Toggle>
-        <Dropdown.Menu style={{ maxHeight: "100px", overflowY: "auto" }}>
-          {minuteOptions}
-        </Dropdown.Menu>
-      </Dropdown>
+        <Dropdown onSelect={handleFromSelectMinute}>
+          <Dropdown.Toggle variant="secondary" id="dropdown-minutes">
+            {FromselectedMinute}
+          </Dropdown.Toggle>
+          <Dropdown.Menu style={{ maxHeight: "100px", overflowY: "auto" }}>
+            {FromminuteOptions}
+          </Dropdown.Menu>
+        </Dropdown>
 
-      <Dropdown onSelect={handleSelectTimeFrame} className="mx-2">
-        <Dropdown.Toggle variant="secondary" id="dropdown-TimeFrame">
-          {selectedTimeFrame}
-        </Dropdown.Toggle>
-        <Dropdown.Menu>
-          <Dropdown.Item eventKey="AM">AM</Dropdown.Item>
-          <Dropdown.Item eventKey="PM">PM</Dropdown.Item>
-        </Dropdown.Menu>
-      </Dropdown>
+        <Dropdown onSelect={handleFromSelectTimeFrame} className="mx-2">
+          <Dropdown.Toggle variant="secondary" id="dropdown-TimeFrame">
+            {FromselectedTimeFrame}
+          </Dropdown.Toggle>
+          <Dropdown.Menu>
+            <Dropdown.Item eventKey="AM">AM</Dropdown.Item>
+            <Dropdown.Item eventKey="PM">PM</Dropdown.Item>
+          </Dropdown.Menu>
+        </Dropdown>
+      </Container>
+
+      <p>To</p>
+      <Container className="d-flex justify-content-center align-items-center">
+        <Dropdown onSelect={handleToSelectHour}>
+          <Dropdown.Toggle variant="secondary" id="dropdown-hours">
+            {ToselectedHour}
+          </Dropdown.Toggle>
+          <Dropdown.Menu style={{ maxHeight: "100px", overflowY: "auto" }}>
+            {TohoursOption}
+          </Dropdown.Menu>
+        </Dropdown>
+
+        <p className="mt-2 fs-3">:</p>
+
+        <Dropdown onSelect={handleToSelectMinute}>
+          <Dropdown.Toggle variant="secondary" id="dropdown-minutes">
+            {ToselectedMinute}
+          </Dropdown.Toggle>
+          <Dropdown.Menu style={{ maxHeight: "100px", overflowY: "auto" }}>
+            {TominuteOptions}
+          </Dropdown.Menu>
+        </Dropdown>
+
+        <Dropdown onSelect={handleToSelectTimeFrame} className="mx-2">
+          <Dropdown.Toggle variant="secondary" id="dropdown-TimeFrame">
+            {ToselectedTimeFrame}
+          </Dropdown.Toggle>
+          <Dropdown.Menu>
+            <Dropdown.Item eventKey="AM">AM</Dropdown.Item>
+            <Dropdown.Item eventKey="PM">PM</Dropdown.Item>
+          </Dropdown.Menu>
+        </Dropdown>
+      </Container>
     </Container>
   );
 }

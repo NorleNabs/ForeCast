@@ -70,25 +70,27 @@ app.post("/api/login", async (req, res) => {
 
 //add todo list
 app.post("/api/users/:id/todo", async (req, res) => {
-  const { date, time, task } = req.body;
+  const { date, Fromtime, Totime, task } = req.body;
 
   // Validate request body
-  if (!date || !time || !task) {
+  if (!date || !Fromtime || !Totime || !task) {
     return res
       .status(400)
       .json({ error: "Date, time, and task are required." });
   }
 
   try {
-    const user = await SetUsers.findByIdAndUpdate(
-      req.params.id,
-      { $push: { todo: { date, time, task } } },
-      { new: true }
-    );
+    const user = await SetUsers.findById(req.params.id);
+    if (!user) return res.status(404).json({ error: "User not found." });
 
-    if (!user) {
-      return res.status(404).json({ error: "User not found." });
+    // Item Limiter
+    if (user.todo.length >= 30) {
+      user.todo.shift();
     }
+
+    user.todo.push({ date, Fromtime, Totime, task });
+
+    await user.save();
 
     res.status(200).json({
       message: "Todo added successfully.",

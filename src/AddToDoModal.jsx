@@ -7,14 +7,18 @@ import { FaPlus } from "react-icons/fa";
 const user = JSON.parse(localStorage.getItem("user"));
 
 function AddToDoModal({ show, onHide, todaydate }) {
-  const [selectedHour, setSelectedHour] = useState("01");
-  const [selectedMinute, setSelectedMinute] = useState("00");
-  const [selectedTimeFrame, setSelectedTimeFrame] = useState("AM");
+  const [ToselectedHour, setToSelectedHour] = useState("01");
+  const [ToselectedMinute, setToSelectedMinute] = useState("00");
+  const [ToselectedTimeFrame, setToSelectedTimeFrame] = useState("AM");
+  const [FromselectedHour, setFromSelectedHour] = useState("01");
+  const [FromselectedMinute, setFromSelectedMinute] = useState("00");
+  const [FromselectedTimeFrame, setFromSelectedTimeFrame] = useState("AM");
   const [date, setDate] = useState(todaydate);
   const [task, setTask] = useState("");
 
   const handleSave = async () => {
-    const fullTime = `${selectedHour}:${selectedMinute} ${selectedTimeFrame}`;
+    const TofullTime = `${ToselectedHour}:${ToselectedMinute} ${ToselectedTimeFrame}`;
+    const FromfullTime = `${FromselectedHour}:${FromselectedMinute} ${FromselectedTimeFrame}`;
     const today = new Date().toLocaleDateString(); // or use a proper date input if needed
     const userId = user?.id;
 
@@ -26,7 +30,12 @@ function AddToDoModal({ show, onHide, todaydate }) {
           headers: {
             "Content-Type": "application/json",
           },
-          body: JSON.stringify({ date: todaydate, time: fullTime, task: task }),
+          body: JSON.stringify({
+            date: todaydate,
+            Totime: TofullTime,
+            Fromtime: FromfullTime,
+            task: task,
+          }),
         }
       );
 
@@ -46,12 +55,18 @@ function AddToDoModal({ show, onHide, todaydate }) {
       </Modal.Header>
       <Modal.Body>
         <SetTime
-          selectedHour={selectedHour}
-          setSelectedHour={setSelectedHour}
-          selectedMinute={selectedMinute}
-          setSelectedMinute={setSelectedMinute}
-          selectedTimeFrame={selectedTimeFrame}
-          setSelectedTimeFrame={setSelectedTimeFrame}
+          ToselectedHour={ToselectedHour}
+          setToSelectedHour={setToSelectedHour}
+          ToselectedMinute={ToselectedMinute}
+          setToSelectedMinute={setToSelectedMinute}
+          ToselectedTimeFrame={ToselectedTimeFrame}
+          setToSelectedTimeFrame={setToSelectedTimeFrame}
+          FromselectedHour={FromselectedHour}
+          setFromSelectedHour={setFromSelectedHour}
+          FromselectedMinute={FromselectedMinute}
+          setFromSelectedMinute={setFromSelectedMinute}
+          FromselectedTimeFrame={FromselectedTimeFrame}
+          setFromSelectedTimeFrame={setFromSelectedTimeFrame}
         />
         <Form.Group className="mb-3">
           <Form.Control

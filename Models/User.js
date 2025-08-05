@@ -10,7 +10,8 @@ const setUserSchema = new mongoose.Schema({
   todo: [
     {
       date: String,
-      time: String,
+      Totime: String,
+      Fromtime: String,
       task: String,
     },
   ],
