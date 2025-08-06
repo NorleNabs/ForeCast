@@ -4,9 +4,7 @@ import React, { useEffect, useState } from "react";
 import { Button, Form } from "react-bootstrap";
 import { FaPlus } from "react-icons/fa";
 
-const user = JSON.parse(localStorage.getItem("user"));
-
-function AddToDoModal({ show, onHide, todaydate }) {
+function AddToDoModal({ show, onHide, todaydate, fetchTodos }) {
   const [ToselectedHour, setToSelectedHour] = useState("01");
   const [ToselectedMinute, setToSelectedMinute] = useState("00");
   const [ToselectedTimeFrame, setToSelectedTimeFrame] = useState("AM");
@@ -15,12 +13,14 @@ function AddToDoModal({ show, onHide, todaydate }) {
   const [FromselectedTimeFrame, setFromSelectedTimeFrame] = useState("AM");
   const [date, setDate] = useState(todaydate);
   const [task, setTask] = useState("");
+  const user = JSON.parse(localStorage.getItem("user"));
 
   const handleSave = async () => {
     const TofullTime = `${ToselectedHour}:${ToselectedMinute} ${ToselectedTimeFrame}`;
     const FromfullTime = `${FromselectedHour}:${FromselectedMinute} ${FromselectedTimeFrame}`;
     const today = new Date().toLocaleDateString(); // or use a proper date input if needed
     const userId = user?.id;
+    console.log(userId);
 
     try {
       const response = await fetch(
@@ -41,6 +41,7 @@ function AddToDoModal({ show, onHide, todaydate }) {
 
       if (!response.ok) throw new Error("Failed to add task");
       const updatedUser = await response.json();
+      await fetchTodos();
       console.log("Updated user:", updatedUser);
       onHide(); // Close modal
     } catch (err) {

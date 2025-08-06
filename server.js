@@ -72,7 +72,6 @@ app.post("/api/login", async (req, res) => {
 app.post("/api/users/:id/todo", async (req, res) => {
   const { date, Fromtime, Totime, task } = req.body;
 
-  // Validate request body
   if (!date || !Fromtime || !Totime || !task) {
     return res
       .status(400)
@@ -83,11 +82,16 @@ app.post("/api/users/:id/todo", async (req, res) => {
     const user = await SetUsers.findById(req.params.id);
     if (!user) return res.status(404).json({ error: "User not found." });
 
-    // Item Limiter
-    if (user.todo.length >= 30) {
-      user.todo.shift();
-    }
+    const now = new Date();
+    const currentMonth = now.toLocaleString("default", { month: "long" });
 
+    // ✅ Remove todos not in the current month (based on "August 5" format)
+    user.todo = user.todo.filter((todo) => {
+      const [month] = todo.date.split(" "); // e.g. "August"
+      return month === currentMonth;
+    });
+
+    // Add new todo
     user.todo.push({ date, Fromtime, Totime, task });
 
     await user.save();

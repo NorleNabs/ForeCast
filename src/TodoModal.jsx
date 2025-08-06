@@ -40,9 +40,11 @@ function MyVerticallyCenteredModal({ show, onHide, activeDay }) {
           <Modal.Title className="mb-0">
             To-Do List For {activeDay || "Modal heading"}
           </Modal.Title>
-          <Button variant="primary" onClick={handleShow}>
-            <FaPlus />
-          </Button>
+          {todos.some((todo) => todo.date === activeDay) ? (
+            <Button variant="primary" onClick={handleShow}>
+              <FaPlus />
+            </Button>
+          ) : null}
         </div>
       </Modal.Header>
       <Modal.Body
@@ -93,6 +95,7 @@ function MyVerticallyCenteredModal({ show, onHide, activeDay }) {
           show={modalShow}
           onHide={() => setModalShow(false)}
           todaydate={activeDay}
+          fetchTodos={fetchTodos}
         />
       </Modal.Body>
 
