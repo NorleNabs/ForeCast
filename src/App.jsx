@@ -17,8 +17,7 @@ import Row from "react-bootstrap/Row";
 import Col from "react-bootstrap/Col";
 import Container from "react-bootstrap/Container";
 import LoginPage from "./LogIn";
-
-const DEV_MODE = 3;
+import Background from "./Background";
 
 function App() {
   const [isLoggedIn, setIsLoggedIn] = useState(() => {
@@ -32,6 +31,7 @@ function App() {
 
   const Dashboard = () => (
     <>
+      <Background />
       <NavbarComponent onLogout={handleLogout} />
       <Container
         className="mt-2 mb-4 mx-0"
