@@ -2,6 +2,7 @@ import { useState } from "react";
 import { Button, Form, Row } from "react-bootstrap";
 import { Link } from "react-router-dom";
 import SetUpComponent from "./SetUp";
+import Background from "./Background";
 
 function LoginPage({ onLogin }) {
   const [username, setUsername] = useState("");
@@ -40,6 +41,7 @@ function LoginPage({ onLogin }) {
       style={{
         minHeight: "100vh",
       }}>
+      <Background />
       <Form
         onSubmit={handleLogin}
         className="align-self-center rounded-5 p-5 w-25"
@@ -66,8 +68,8 @@ function LoginPage({ onLogin }) {
           </Form.Group>
         </Row>
         <Row className="justify-content-center">
-          <Button type="submit" className="w-50 self-center">
-            Login
+          <Button type="submit" className="btn-1 self-center">
+            <span>Login</span>
           </Button>
           <label style={{ color: "white" }} className="">
             Dont have an account? <Link to="/Setup">Sign Up</Link>

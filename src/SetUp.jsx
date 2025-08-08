@@ -4,6 +4,7 @@ import Form from "react-bootstrap/Form";
 import { Col, Container, Button } from "react-bootstrap";
 import InputGroup from "react-bootstrap/InputGroup";
 import { MdPerson } from "react-icons/md";
+import Background from "./Background";
 
 function SetUpComponent() {
   const [modalShow, setModalShow] = useState(false);
@@ -100,6 +101,7 @@ function SetUpComponent() {
 
   return (
     <div className="w-100 h-100">
+      <Background />
       <Row className="w-100 h-100 my-4">
         <h3 style={{ color: "white" }}>Lets Set Things Up</h3>
       </Row>
@@ -256,13 +258,11 @@ function SetUpComponent() {
                 Go back to <a href="/">Log In</a>
               </label>
             </Form.Group>
-
-            <Button type="Button" href="" className="btn btn-secondary mx-2">
-              Cancel
+            <Button type="Button" className="btn-1 mx-2">
+              <span>Cancel</span>
             </Button>
-
-            <Button type="submit" className="btn btn-primary mx-2">
-              Save
+            <Button type="submit" className="btn-1 mx-2">
+              <span>Register</span>
             </Button>
           </Form>
         </Container>

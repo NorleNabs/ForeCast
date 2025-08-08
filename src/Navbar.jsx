@@ -51,13 +51,10 @@ function NavbarComponent({ onLogout }) {
                   </Navbar.Text>
                   <NavDropdown id="basic-nav-dropdown" className="fs-5">
                     <NavDropdown.Item href="#action/3.1">
-                      Action
+                      My Profile
                     </NavDropdown.Item>
                     <NavDropdown.Item href="#action/3.2">
-                      Another action
-                    </NavDropdown.Item>
-                    <NavDropdown.Item href="#action/3.3">
-                      Something
+                      Settings
                     </NavDropdown.Item>
                     <NavDropdown.Divider />
                     <NavDropdown.Item onClick={onLogout}>

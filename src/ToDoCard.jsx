@@ -58,6 +58,7 @@ function ToDoCardComponent() {
           }}>
           <>
             <Button
+              className="btn-1 h-100"
               variant="primary"
               onClick={() => handleShow(next7Days[0])}
               style={{ backgroundColor: "#78787806", border: "none" }}>
@@ -78,6 +79,7 @@ function ToDoCardComponent() {
             backdropFilter: "blur(10px)",
           }}>
           <Button
+            className="btn-1 h-100"
             variant="primary"
             onClick={() => handleShow(next7Days[1])}
             style={{ backgroundColor: "#78787806", border: "none" }}>
@@ -97,6 +99,7 @@ function ToDoCardComponent() {
             backdropFilter: "blur(10px)",
           }}>
           <Button
+            className="btn-1 h-100"
             variant="primary"
             onClick={() => handleShow(next7Days[2])}
             style={{ backgroundColor: "#78787806", border: "none" }}>
@@ -116,6 +119,7 @@ function ToDoCardComponent() {
             backdropFilter: "blur(10px)",
           }}>
           <Button
+            className="btn-1 h-100"
             variant="primary"
             onClick={() => handleShow(next7Days[3])}
             style={{ backgroundColor: "#78787806", border: "none" }}>
@@ -135,6 +139,7 @@ function ToDoCardComponent() {
             backdropFilter: "blur(10px)",
           }}>
           <Button
+            className="btn-1 h-100"
             variant="primary"
             onClick={() => handleShow(next7Days[4])}
             style={{ backgroundColor: "#78787806", border: "none" }}>
@@ -154,6 +159,7 @@ function ToDoCardComponent() {
             backdropFilter: "blur(10px)",
           }}>
           <Button
+            className="btn-1 h-100"
             variant="primary"
             onClick={() => handleShow(next7Days[5])}
             style={{ backgroundColor: "#78787806", border: "none" }}>
@@ -173,6 +179,7 @@ function ToDoCardComponent() {
             backdropFilter: "blur(10px)",
           }}>
           <Button
+            className="btn-1 h-100"
             variant="primary"
             onClick={() => handleShow(next7Days[6])}
             style={{ backgroundColor: "#78787806", border: "none" }}>
