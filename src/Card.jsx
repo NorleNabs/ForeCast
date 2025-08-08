@@ -48,7 +48,7 @@ function CardComponent() {
           <div
             className="content h-100 w-100"
             style={{
-              backgroundColor: "#000000ff",
+              backgroundColor: "#928DAB",
               backdropFilter: "blur(10px)",
             }}>
             <div className="align-items-center p-3 h-100 w-100">

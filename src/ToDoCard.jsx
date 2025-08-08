@@ -53,8 +53,7 @@ function ToDoCardComponent() {
         <div
           className="h-100 w-100 m-2 rounded-3 align-content-center"
           style={{
-            backgroundColor: "#7f7e7e5d",
-            backdropFilter: "blur(10px)",
+            backgroundColor: "#928DAB",
           }}>
           <>
             <Button
@@ -76,13 +75,12 @@ function ToDoCardComponent() {
           className="h-100 w-100 m-2 rounded-3 align-content-center"
           style={{
             backgroundColor: "#7f7e7e6d",
-            backdropFilter: "blur(10px)",
           }}>
           <Button
             className="btn-1 h-100"
             variant="primary"
             onClick={() => handleShow(next7Days[1])}
-            style={{ backgroundColor: "#78787806", border: "none" }}>
+            style={{ backgroundColor: "#928DAB", border: "none" }}>
             {next7Days[1]}
           </Button>
 
@@ -95,8 +93,7 @@ function ToDoCardComponent() {
         <div
           className="h-100 w-100 m-2 rounded-3 align-content-center"
           style={{
-            backgroundColor: "#7f7e7e5d",
-            backdropFilter: "blur(10px)",
+            backgroundColor: "#928DAB",
           }}>
           <Button
             className="btn-1 h-100"
@@ -115,8 +112,7 @@ function ToDoCardComponent() {
         <div
           className="h-100 w-100 m-2 rounded-3 align-content-center"
           style={{
-            backgroundColor: "#7f7e7e5d",
-            backdropFilter: "blur(10px)",
+            backgroundColor: "#928DAB",
           }}>
           <Button
             className="btn-1 h-100"
@@ -135,8 +131,7 @@ function ToDoCardComponent() {
         <div
           className="h-100 w-100 m-2 rounded-3 align-content-center"
           style={{
-            backgroundColor: "#7f7e7e5d",
-            backdropFilter: "blur(10px)",
+            backgroundColor: "#928DAB",
           }}>
           <Button
             className="btn-1 h-100"
@@ -155,8 +150,7 @@ function ToDoCardComponent() {
         <div
           className="h-100 w-100 m-2 rounded-3 align-content-center"
           style={{
-            backgroundColor: "#7f7e7e5d",
-            backdropFilter: "blur(10px)",
+            backgroundColor: "#928DAB",
           }}>
           <Button
             className="btn-1 h-100"
@@ -175,8 +169,7 @@ function ToDoCardComponent() {
         <div
           className="h-100 w-100 m-2 rounded-3 align-content-center"
           style={{
-            backgroundColor: "#7f7e7e5d",
-            backdropFilter: "blur(10px)",
+            backgroundColor: "#928DAB",
           }}>
           <Button
             className="btn-1 h-100"

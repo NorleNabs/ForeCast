@@ -30,11 +30,10 @@ function NewsCardComponent() {
           articles.map((article, index) => (
             <Row
               key={index}
-              className="rounded-4"
+              className="news-row rounded-4"
               style={{
                 minHeight: "20vh",
-                backgroundColor: "#7f7e7e5d",
-                backdropFilter: "blur(10px)",
+                backgroundColor: "#928DAB",
               }}>
               <Col sm={4} className="">
                 {article.urlToImage ? (

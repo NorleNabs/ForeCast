@@ -31,7 +31,6 @@ function App() {
 
   const Dashboard = () => (
     <>
-      <Background />
       <NavbarComponent onLogout={handleLogout} />
       <Container
         className="mt-2 mb-4 mx-0"
