@@ -47,11 +47,35 @@ function SetTime({
     setFromSelectedTimeFrame(eventKey);
   };
 
+  const currentTime = new Date().toLocaleTimeString("en-PH", {
+    timeZone: "Asia/Manila",
+    hour: "2-digit",
+    minute: "2-digit",
+    hour12: true,
+  });
+
+  useEffect(() => {
+    const now = new Date().toLocaleTimeString("en-PH", {
+      timeZone: "Asia/Manila",
+      hour: "2-digit",
+      minute: "2-digit",
+      hour12: true,
+    });
+    const period = now.split(" ")[1];
+    setFromSelectedTimeFrame(period);
+  }, [setFromSelectedTimeFrame]);
+
+  const currentHour = parseInt(currentTime.split(":")[0], 10);
+  const currentMinute = parseInt(currentTime.split(":")[1], 10);
+
   const TohoursOption = [];
   for (let i = 1; i <= 12; i++) {
     const TopaddedHour = String(i).padStart(2, "0");
+
+    const isDisabled = i <= currentHour;
+
     TohoursOption.push(
-      <Dropdown.Item eventKey={TopaddedHour} key={i}>
+      <Dropdown.Item eventKey={TopaddedHour} key={i} disabled={isDisabled}>
         {TopaddedHour}
       </Dropdown.Item>
     );
@@ -60,8 +84,11 @@ function SetTime({
   const TominuteOptions = [];
   for (let i = 0; i <= 59; i++) {
     const TopaddedMinute = String(i).padStart(2, "0");
+
+    const isDisabled = i <= currentMinute;
+
     TominuteOptions.push(
-      <Dropdown.Item key={i} eventKey={TopaddedMinute}>
+      <Dropdown.Item key={i} eventKey={TopaddedMinute} disabled={isDisabled}>
         {TopaddedMinute}
       </Dropdown.Item>
     );
@@ -70,8 +97,11 @@ function SetTime({
   const FromhoursOption = [];
   for (let i = 1; i <= 12; i++) {
     const FrompaddedHour = String(i).padStart(2, "0");
+
+    const isDisabled = i <= currentHour;
+
     FromhoursOption.push(
-      <Dropdown.Item eventKey={FrompaddedHour} key={i}>
+      <Dropdown.Item eventKey={FrompaddedHour} key={i} disabled={isDisabled}>
         {FrompaddedHour}
       </Dropdown.Item>
     );
@@ -80,8 +110,11 @@ function SetTime({
   const FromminuteOptions = [];
   for (let i = 0; i <= 59; i++) {
     const FrompaddedMinute = String(i).padStart(2, "0");
+
+    const isDisabled = i <= currentMinute;
+
     FromminuteOptions.push(
-      <Dropdown.Item key={i} eventKey={FrompaddedMinute}>
+      <Dropdown.Item key={i} eventKey={FrompaddedMinute} disabled={isDisabled}>
         {FrompaddedMinute}
       </Dropdown.Item>
     );
@@ -116,8 +149,16 @@ function SetTime({
             {FromselectedTimeFrame}
           </Dropdown.Toggle>
           <Dropdown.Menu>
-            <Dropdown.Item eventKey="AM">AM</Dropdown.Item>
-            <Dropdown.Item eventKey="PM">PM</Dropdown.Item>
+            <Dropdown.Item
+              eventKey="AM"
+              active={FromselectedTimeFrame === "AM"}>
+              AM
+            </Dropdown.Item>
+            <Dropdown.Item
+              eventKey="PM"
+              active={FromselectedTimeFrame === "PM"}>
+              PM
+            </Dropdown.Item>
           </Dropdown.Menu>
         </Dropdown>
       </Container>
