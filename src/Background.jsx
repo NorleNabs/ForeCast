@@ -10,11 +10,12 @@ export default function Background() {
   return (
     <div
       style={{
-        position: "fixed",
+        position: "absolute",
         top: 0,
         left: 0,
-        width: "100vw",
-        height: "100vh",
+        width: "100%",
+        height: "100%",
+        zIndex: 0, // Behind content
         overflow: "hidden",
       }}>
       <Swiper
@@ -24,39 +25,34 @@ export default function Background() {
         autoplay={{ delay: 60000, disableOnInteraction: false }}
         style={{ width: "100%", height: "100%" }}>
         <SwiperSlide>
-          <img
-            src="src/Image/heavy-rain-4864257_1920.jpg"
-            alt="Slide 1"
-            style={{ width: "100%", height: "100%", objectFit: "cover" }}
-          />
+          <video
+            autoPlay
+            muted
+            loop
+            playsInline
+            style={{
+              width: "100%",
+              height: "100%",
+              objectFit: "cover",
+            }}>
+            <source src="/Image/c.mp4" type="video/mp4" />
+            Your browser does not support the video tag.
+          </video>
         </SwiperSlide>
         <SwiperSlide>
-          <img
-            src="src/Image/nature-6821966_1920.jpg"
-            alt="Slide 2"
-            style={{ width: "100%", height: "100%", objectFit: "cover" }}
-          />
-        </SwiperSlide>
-        <SwiperSlide>
-          <img
-            src="src/Image/sea-9714469_1920.jpg"
-            alt="Slide 2"
-            style={{ width: "100%", height: "100%", objectFit: "cover" }}
-          />
-        </SwiperSlide>
-        <SwiperSlide>
-          <img
-            src="src/Image/slide1.jpg"
-            alt="Slide 2"
-            style={{ width: "100%", height: "100%", objectFit: "cover" }}
-          />
-        </SwiperSlide>
-        <SwiperSlide>
-          <img
-            src="src/Image/slide1.jpg"
-            alt="Slide 2"
-            style={{ width: "100%", height: "100%", objectFit: "cover" }}
-          />
+          <video
+            autoPlay
+            muted
+            loop
+            playsInline
+            style={{
+              width: "100%",
+              height: "100%",
+              objectFit: "cover",
+            }}>
+            <source src="/Image/c.mp4" type="video/mp4" />
+            Your browser does not support the video tag.
+          </video>
         </SwiperSlide>
       </Swiper>
     </div>

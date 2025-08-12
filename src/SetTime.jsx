@@ -22,6 +22,8 @@ function SetTime({
   setFromSelectedMinute,
   FromselectedTimeFrame,
   setFromSelectedTimeFrame,
+  modalDate,
+  setModalDate,
 }) {
   const handleToSelectHour = (eventKey) => {
     setToSelectedHour(eventKey);
@@ -47,6 +49,8 @@ function SetTime({
     setFromSelectedTimeFrame(eventKey);
   };
 
+  console.log("Modal today", modalDate);
+
   const currentTime = new Date().toLocaleTimeString("en-PH", {
     timeZone: "Asia/Manila",
     hour: "2-digit",
@@ -54,16 +58,26 @@ function SetTime({
     hour12: true,
   });
 
+  const today = new Date();
+  const formattedDate = today.toLocaleDateString("en-PH", {
+    month: "long",
+    day: "2-digit",
+  });
+
+  console.log("Date Today", formattedDate);
+
   useEffect(() => {
-    const now = new Date().toLocaleTimeString("en-PH", {
-      timeZone: "Asia/Manila",
-      hour: "2-digit",
-      minute: "2-digit",
-      hour12: true,
-    });
-    const period = now.split(" ")[1];
-    setFromSelectedTimeFrame(period);
-  }, [setFromSelectedTimeFrame]);
+    if (modalDate === formattedDate) {
+      const now = new Date().toLocaleTimeString("en-PH", {
+        timeZone: "Asia/Manila",
+        hour: "2-digit",
+        minute: "2-digit",
+        hour12: true,
+      });
+      const period = now.split(" ")[1];
+      setFromSelectedTimeFrame(period);
+    }
+  }, [modalDate, formattedDate, setFromSelectedTimeFrame]);
 
   const currentHour = parseInt(currentTime.split(":")[0], 10);
   const currentMinute = parseInt(currentTime.split(":")[1], 10);
@@ -190,8 +204,8 @@ function SetTime({
             {ToselectedTimeFrame}
           </Dropdown.Toggle>
           <Dropdown.Menu>
-            <Dropdown.Item eventKey="AM">AM</Dropdown.Item>
             <Dropdown.Item eventKey="PM">PM</Dropdown.Item>
+            <Dropdown.Item eventKey="AM">AM</Dropdown.Item>
           </Dropdown.Menu>
         </Dropdown>
       </Container>

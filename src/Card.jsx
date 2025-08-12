@@ -10,6 +10,7 @@ import { WiHumidity } from "react-icons/wi";
 import { WiStrongWind } from "react-icons/wi";
 import SetLocationModal from "./LogIn";
 import Clock from "./Clock";
+import Background from "./Background";
 import "bootstrap/dist/css/bootstrap.min.css";
 
 function CardComponent() {
@@ -43,14 +44,13 @@ function CardComponent() {
       className="d-flex justify-content-center w-100 h-100 pb-4 pt-1"
       style={{}}>
       {weather ? (
-        <div className="card h-100 w-100 rounded-4 p-1">
-          <span className="glass"></span>
+        <div
+          className="card h-100 w-100 rounded-4 p-1"
+          style={{ position: "relative", overflow: "hidden" }}>
+          <Background className="h-100 w-100" />
           <div
             className="content h-100 w-100"
-            style={{
-              backgroundColor: "#928DAB",
-              backdropFilter: "blur(10px)",
-            }}>
+            style={{ position: "relative", zIndex: 1 }}>
             <div className="align-items-center p-3 h-100 w-100">
               <Row>
                 <Col sm={6} className="text-start">

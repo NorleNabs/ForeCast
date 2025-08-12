@@ -5,10 +5,10 @@ import { Button, Form } from "react-bootstrap";
 import { FaPlus } from "react-icons/fa";
 
 function AddToDoModal({ show, onHide, todaydate, fetchTodos }) {
-  const [ToselectedHour, setToSelectedHour] = useState("01");
+  const [ToselectedHour, setToSelectedHour] = useState("12");
   const [ToselectedMinute, setToSelectedMinute] = useState("00");
-  const [ToselectedTimeFrame, setToSelectedTimeFrame] = useState("AM");
-  const [FromselectedHour, setFromSelectedHour] = useState("01");
+  const [ToselectedTimeFrame, setToSelectedTimeFrame] = useState("PM");
+  const [FromselectedHour, setFromSelectedHour] = useState("12");
   const [FromselectedMinute, setFromSelectedMinute] = useState("00");
   const [FromselectedTimeFrame, setFromSelectedTimeFrame] = useState("AM");
   const [date, setDate] = useState(todaydate);
@@ -68,6 +68,8 @@ function AddToDoModal({ show, onHide, todaydate, fetchTodos }) {
           setFromSelectedMinute={setFromSelectedMinute}
           FromselectedTimeFrame={FromselectedTimeFrame}
           setFromSelectedTimeFrame={setFromSelectedTimeFrame}
+          setModalDate={setDate}
+          modalDate={date}
         />
         <Form.Group className="mb-3">
           <Form.Control

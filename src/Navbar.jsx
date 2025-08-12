@@ -24,7 +24,7 @@ function NavbarComponent({ onLogout }) {
             <Navbar.Brand href="#home" style={{ fontSize: "2rem" }}>
               <img
                 alt=""
-                src="src/Image/WeathCast.png"
+                src="/Image/WeathCast.png"
                 width="50"
                 height="50"
                 className="d-inline-block align-top rounded-circle"

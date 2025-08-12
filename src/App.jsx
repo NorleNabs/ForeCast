@@ -17,7 +17,6 @@ import Row from "react-bootstrap/Row";
 import Col from "react-bootstrap/Col";
 import Container from "react-bootstrap/Container";
 import LoginPage from "./LogIn";
-import Background from "./Background";
 
 function App() {
   const [isLoggedIn, setIsLoggedIn] = useState(() => {
