@@ -2,7 +2,7 @@ import { useState } from "react";
 import { Button, Form, Row } from "react-bootstrap";
 import { Link } from "react-router-dom";
 import SetUpComponent from "./SetUp";
-import Background from "./Background";
+import Background from "../UniComp/Background";
 
 function LoginPage({ onLogin }) {
   const [username, setUsername] = useState("");

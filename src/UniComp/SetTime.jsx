@@ -86,10 +86,8 @@ function SetTime({
   for (let i = 1; i <= 12; i++) {
     const TopaddedHour = String(i).padStart(2, "0");
 
-    const isDisabled = i <= currentHour;
-
     TohoursOption.push(
-      <Dropdown.Item eventKey={TopaddedHour} key={i} disabled={isDisabled}>
+      <Dropdown.Item eventKey={TopaddedHour} key={i}>
         {TopaddedHour}
       </Dropdown.Item>
     );
@@ -99,10 +97,8 @@ function SetTime({
   for (let i = 0; i <= 59; i++) {
     const TopaddedMinute = String(i).padStart(2, "0");
 
-    const isDisabled = i <= currentMinute;
-
     TominuteOptions.push(
-      <Dropdown.Item key={i} eventKey={TopaddedMinute} disabled={isDisabled}>
+      <Dropdown.Item key={i} eventKey={TopaddedMinute}>
         {TopaddedMinute}
       </Dropdown.Item>
     );
@@ -112,10 +108,8 @@ function SetTime({
   for (let i = 1; i <= 12; i++) {
     const FrompaddedHour = String(i).padStart(2, "0");
 
-    const isDisabled = i <= currentHour;
-
     FromhoursOption.push(
-      <Dropdown.Item eventKey={FrompaddedHour} key={i} disabled={isDisabled}>
+      <Dropdown.Item eventKey={FrompaddedHour} key={i}>
         {FrompaddedHour}
       </Dropdown.Item>
     );
@@ -125,10 +119,8 @@ function SetTime({
   for (let i = 0; i <= 59; i++) {
     const FrompaddedMinute = String(i).padStart(2, "0");
 
-    const isDisabled = i <= currentMinute;
-
     FromminuteOptions.push(
-      <Dropdown.Item key={i} eventKey={FrompaddedMinute} disabled={isDisabled}>
+      <Dropdown.Item key={i} eventKey={FrompaddedMinute}>
         {FrompaddedMinute}
       </Dropdown.Item>
     );
@@ -163,16 +155,8 @@ function SetTime({
             {FromselectedTimeFrame}
           </Dropdown.Toggle>
           <Dropdown.Menu>
-            <Dropdown.Item
-              eventKey="AM"
-              active={FromselectedTimeFrame === "AM"}>
-              AM
-            </Dropdown.Item>
-            <Dropdown.Item
-              eventKey="PM"
-              active={FromselectedTimeFrame === "PM"}>
-              PM
-            </Dropdown.Item>
+            <Dropdown.Item eventKey="AM">AM</Dropdown.Item>
+            <Dropdown.Item eventKey="PM">PM</Dropdown.Item>
           </Dropdown.Menu>
         </Dropdown>
       </Container>

@@ -2,15 +2,15 @@ import { Col, Container, Button } from "react-bootstrap";
 import Form from "react-bootstrap/Form";
 import Row from "react-bootstrap/Row";
 import React, { useEffect, useState } from "react";
-import { SunnyOutlineLoop } from "./weathericon/SunnyIconSvg";
-import { RainyOutline } from "./weathericon/Rainy";
-import { CloudsBroken } from "./weathericon/BrokenClouds";
+import { SunnyOutlineLoop } from "../weathericon/SunnyIconSvg";
+import { RainyOutline } from "../weathericon/Rainy";
+import { CloudsBroken } from "../weathericon/BrokenClouds";
 import { FaLocationDot } from "react-icons/fa6";
 import { WiHumidity } from "react-icons/wi";
 import { WiStrongWind } from "react-icons/wi";
-import SetLocationModal from "./LogIn";
-import Clock from "./Clock";
-import Background from "./Background";
+import SetLocationModal from "../LogIn/LogIn";
+import Clock from "../UniComp/Clock";
+import Background from "../UniComp/Background";
 import "bootstrap/dist/css/bootstrap.min.css";
 
 function CardComponent() {

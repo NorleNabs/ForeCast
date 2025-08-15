@@ -4,7 +4,7 @@ import Form from "react-bootstrap/Form";
 import { Col, Container, Button } from "react-bootstrap";
 import InputGroup from "react-bootstrap/InputGroup";
 import { MdPerson } from "react-icons/md";
-import Background from "./Background";
+import Background from "../UniComp/Background";
 
 function SetUpComponent() {
   const [modalShow, setModalShow] = useState(false);

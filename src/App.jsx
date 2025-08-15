@@ -1,22 +1,23 @@
 import { useState, useEffect } from "react";
-import CardComponent from "./Card";
-import NewsCardComponent from "./NewsCard";
-import NavbarComponent from "./Navbar";
-import ToDoCardComponent from "./ToDoCard";
+import CardComponent from "./MainComponents/Card";
+import NewsCardComponent from "./MainComponents/NewsCard";
+import NavbarComponent from "./MainComponents/Navbar";
+import ToDoCardComponent from "./MainComponents/ToDoCard";
 import { Button } from "react-bootstrap";
-import MyVerticallyCenteredModal from "./TodoModal";
+import MyVerticallyCenteredModal from "./MainComponents/TodoModal";
 import {
   BrowserRouter as Router,
   Routes,
   Route,
   Navigate,
 } from "react-router-dom";
-import SetUpComponent from "./SetUp";
+import SetUpComponent from "./LogIn/SetUp";
 import "./App.css";
 import Row from "react-bootstrap/Row";
 import Col from "react-bootstrap/Col";
 import Container from "react-bootstrap/Container";
-import LoginPage from "./LogIn";
+import LoginPage from "./LogIn/LogIn";
+import Calendar from "./MainComponents/Calendar";
 
 function App() {
   const [isLoggedIn, setIsLoggedIn] = useState(() => {
@@ -58,14 +59,17 @@ function App() {
         </Row>
       </Container>
       <Container className="mt-3">
-        <Row className="justify-content-center" style={{ minHeight: "20vh" }}>
+        <Row
+          className="justify-content-center mb-5"
+          style={{ minHeight: "30vh" }}>
           <h4
             className="mb-0 text-center font-bold"
             style={{ color: "#ffffffe5" }}>
-            This Week's To-Do List
+            Your To-Do List
           </h4>
-          <Col className="d-flex justify-content-center align-items-center mx-0">
-            <ToDoCardComponent />
+          <Col className=" mx-0">
+            <Calendar className="h-100 w-100" />
+            {/*<ToDoCardComponent />*/}
           </Col>
         </Row>
       </Container>

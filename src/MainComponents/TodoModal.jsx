@@ -1,5 +1,5 @@
 import Modal from "react-bootstrap/Modal";
-import SetTime from "./SetTime";
+import SetTime from "../UniComp/SetTime";
 import React, { useEffect, useState } from "react";
 import { Button } from "react-bootstrap";
 import { FaPlus } from "react-icons/fa";
