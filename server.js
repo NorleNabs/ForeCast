@@ -85,12 +85,6 @@ app.post("/api/users/:id/todo", async (req, res) => {
     const now = new Date();
     const currentMonth = now.toLocaleString("default", { month: "long" });
 
-    // ✅ Remove todos not in the current month (based on "August 5" format)
-    user.todo = user.todo.filter((todo) => {
-      const [month] = todo.date.split(" "); // e.g. "August"
-      return month === currentMonth;
-    });
-
     // Add new todo
     user.todo.push({ date, Fromtime, Totime, task });
 
