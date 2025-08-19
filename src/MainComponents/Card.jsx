@@ -37,7 +37,7 @@ function CardComponent() {
     weekday: "long",
   });
 
-  console.log(user.username); // or user.id, user.email, etc.
+  console.log(weather); // or user.id, user.email, etc.
 
   return (
     <Container
@@ -47,7 +47,7 @@ function CardComponent() {
         <div
           className="card h-100 w-100 rounded-4 p-1"
           style={{ position: "relative", overflow: "hidden" }}>
-          <Background className="h-100 w-100" />
+          <Background className="h-100 w-100" weather={weather.weather[0]} />
           <div
             className="content h-100 w-100"
             style={{ position: "relative", zIndex: 1 }}>
@@ -69,8 +69,6 @@ function CardComponent() {
                   <RainyOutline style={{ fontSize: "3rem" }} />
                 ) : weather.weather?.[0]?.main === "Clear" ? (
                   <SunnyOutlineLoop style={{ fontSize: "3rem" }} />
-                ) : weather.weather?.[0]?.main === "Broken" ? (
-                  <CloudsBroken style={{ fontSize: "3rem" }} />
                 ) : weather.weather?.[0]?.main === "Clouds" ? (
                   <CloudsBroken style={{ fontSize: "3rem" }} />
                 ) : null}

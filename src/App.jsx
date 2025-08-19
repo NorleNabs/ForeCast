@@ -65,7 +65,7 @@ function App() {
           <h4
             className="mb-0 text-center font-bold"
             style={{ color: "#ffffffe5" }}>
-            Your To-Do List
+            To-Do
           </h4>
           <Col className=" mx-0">
             <Calendar className="h-100 w-100" />

@@ -61,6 +61,7 @@ app.post("/api/login", async (req, res) => {
         email: user.email,
         city: user.city,
         defaultnews: user.defaultnews,
+        todo: user.todo,
       },
     });
   } catch (err) {
@@ -110,6 +111,28 @@ app.get("/api/users/:id/todo", async (req, res) => {
     res.json(user.todo || []);
   } catch (err) {
     res.status(500).json({ message: err.message });
+  }
+});
+
+// remove todo list
+app.delete("/api/users/:id/todo/:todoId", async (req, res) => {
+  try {
+    const user = await SetUsers.findById(req.params.id);
+    if (!user) return res.status(404).json({ error: "User not found." });
+
+    // filter out the todo with matching _id
+    user.todo = user.todo.filter(
+      (todo) => todo._id.toString() !== req.params.todoId
+    );
+
+    await user.save();
+
+    res.status(200).json({
+      message: "Todo deleted successfully.",
+      todo: user.todo,
+    });
+  } catch (err) {
+    res.status(500).json({ error: "Server error.", details: err.message });
   }
 });
 

@@ -1,12 +1,8 @@
 import React, { useRef, useState } from "react";
-import { Swiper, SwiperSlide } from "swiper/react";
-import { Autoplay, EffectFade } from "swiper/modules";
-import "swiper/css/effect-fade";
 
-// Import Swiper styles
-import "swiper/css";
+export default function Background({ weather }) {
+  console.log("Weather data:", weather.main);
 
-export default function Background() {
   return (
     <div
       style={{
@@ -18,13 +14,8 @@ export default function Background() {
         zIndex: 0, // Behind content
         overflow: "hidden",
       }}>
-      <Swiper
-        modules={[Autoplay, EffectFade]}
-        effect="fade"
-        loop={true}
-        autoplay={{ delay: 60000, disableOnInteraction: false }}
-        style={{ width: "100%", height: "100%" }}>
-        <SwiperSlide>
+      {weather.main === "Clouds" ? (
+        <div style={{ width: "100%", height: "100%" }}>
           <video
             autoPlay
             muted
@@ -38,8 +29,9 @@ export default function Background() {
             <source src="/Image/c.mp4" type="video/mp4" />
             Your browser does not support the video tag.
           </video>
-        </SwiperSlide>
-        <SwiperSlide>
+        </div>
+      ) : weather.main === "Clear" ? (
+        <div style={{ width: "100%", height: "100%" }}>
           <video
             autoPlay
             muted
@@ -50,11 +42,39 @@ export default function Background() {
               height: "100%",
               objectFit: "cover",
             }}>
-            <source src="/Image/c.mp4" type="video/mp4" />
+            <source src="/Image/59483-493557880_small.mp4" type="video/mp4" />
             Your browser does not support the video tag.
           </video>
-        </SwiperSlide>
-      </Swiper>
+        </div>
+      ) : weather.main === "Rain" ? (
+        <div style={{ width: "100%", height: "100%" }}>
+          <video
+            autoPlay
+            muted
+            loop
+            playsInline
+            style={{
+              width: "100%",
+              height: "100%",
+              objectFit: "cover",
+            }}>
+            <source src="/Image/203878-922675732_medium.mp4" type="video/mp4" />
+            Your browser does not support the video tag.
+          </video>
+        </div>
+      ) : (
+        <div style={{ width: "100%", height: "100%" }}>
+          <img
+            src="/Image/slide1.jpg"
+            alt="Default background"
+            style={{
+              width: "100%",
+              height: "100%",
+              objectFit: "cover",
+            }}
+          />
+        </div>
+      )}
     </div>
   );
 }

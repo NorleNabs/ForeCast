@@ -5,11 +5,12 @@ import { Button } from "react-bootstrap";
 import { FaPlus } from "react-icons/fa";
 import AddToDoModal from "./AddToDoModal";
 
-const user = JSON.parse(localStorage.getItem("user"));
-
 function MyVerticallyCenteredModal({ show, onHide, activeDay }) {
   const [modalShow, setModalShow] = useState(false);
   const [todos, setTodos] = useState([]);
+  const user = JSON.parse(localStorage.getItem("user"));
+  const userId = user?.id;
+  const todoId = user?.todo || [];
 
   const handleShow = (day) => {
     setModalShow(true);
@@ -32,6 +33,30 @@ function MyVerticallyCenteredModal({ show, onHide, activeDay }) {
   useEffect(() => {
     fetchTodos(); // Only runs once
   }, []);
+
+  const handleDelete = async (todoId) => {
+    try {
+      const user = JSON.parse(localStorage.getItem("user"));
+      const userId = user?.id;
+
+      const response = await fetch(
+        `http://localhost:8000/api/users/${userId}/todo/${todoId}`,
+        {
+          method: "DELETE",
+        }
+      );
+
+      if (!response.ok) throw new Error("Failed to delete task");
+
+      const updatedUser = await response.json();
+      console.log("Updated user:", updatedUser);
+
+      // refresh todos in UI
+      await fetchTodos();
+    } catch (err) {
+      console.error("Error deleting task:", err.message);
+    }
+  };
 
   return (
     <Modal show={show} onHide={onHide} size="md" centered>
@@ -70,6 +95,13 @@ function MyVerticallyCenteredModal({ show, onHide, activeDay }) {
                     <div className="d-flex justify-content-center mx-2">
                       <span className="fw-bold">To - </span>
                       <p>{todo.Totime}</p>
+                    </div>
+                    <div className="">
+                      <button
+                        className="text-end"
+                        onClick={() => handleDelete(todo._id)}>
+                        Remove
+                      </button>
                     </div>
                   </div>
                   <span className="fw-bold mx-2 mt-0">Task</span>

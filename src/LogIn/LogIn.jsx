@@ -41,7 +41,7 @@ function LoginPage({ onLogin }) {
       style={{
         minHeight: "100vh",
       }}>
-      <Background />
+      <Background weather={{ main: "Clear" }} />
       <Form
         onSubmit={handleLogin}
         className="align-self-center rounded-5 p-5 w-25"
