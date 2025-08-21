@@ -22,7 +22,8 @@ function ToDoCardComponent() {
       date.setDate(date.getDate() + i);
 
       const formatted = date.toLocaleDateString("en-US", {
-        month: "long",
+        year: "numeric",
+        month: "numeric",
         day: "numeric",
       });
 

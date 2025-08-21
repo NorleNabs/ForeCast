@@ -18,6 +18,7 @@ import Col from "react-bootstrap/Col";
 import Container from "react-bootstrap/Container";
 import LoginPage from "./LogIn/LogIn";
 import Calendar from "./MainComponents/Calendar";
+import NewsPage from "./NewsPage";
 
 function App() {
   const [isLoggedIn, setIsLoggedIn] = useState(() => {
@@ -65,7 +66,7 @@ function App() {
           <h4
             className="mb-0 text-center font-bold"
             style={{ color: "#ffffffe5" }}>
-            To-Do
+            Schedule
           </h4>
           <Col className=" mx-0">
             <Calendar className="h-100 w-100" />
@@ -101,6 +102,7 @@ function App() {
         />
         {/* Add a fallback route */}
         <Route path="*" element={<Navigate to="/" />} />
+        <Route path="newspage" element={<NewsPage className="h-100 w-100" />} />
       </Routes>
     </Router>
   );

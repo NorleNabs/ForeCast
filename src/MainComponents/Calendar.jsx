@@ -28,10 +28,17 @@ export default function Calendar() {
     fetchTodos();
   }, []);
 
+  const date = new Date();
+
+  const formatted = date.toISOString().split("T")[0];
+
   const handleDateClick = (arg) => {
-    setModalShow(true);
+    {
+      formatted <= arg.dateStr ? setModalShow(true) : null;
+    }
     setActiveDay(arg.dateStr);
 
+    console.log(formatted, formatted <= arg.dateStr, arg.dateStr);
     // alert(arg.dateStr);
   };
 

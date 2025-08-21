@@ -55,9 +55,6 @@ function NewsCardComponent() {
         ) : (
           <p>Loading news...</p>
         )}
-
-        <div></div>
-        <div></div>
       </Stack>
     </Container>
   );

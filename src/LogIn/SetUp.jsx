@@ -101,7 +101,7 @@ function SetUpComponent() {
 
   return (
     <div className="w-100 h-100">
-      <Background />
+      <Background weather={{ main: "Clear" }} />
       <Row className="w-100 h-100 my-4">
         <h3 style={{ color: "white" }}>Lets Set Things Up</h3>
       </Row>
