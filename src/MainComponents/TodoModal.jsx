@@ -85,7 +85,10 @@ function MyVerticallyCenteredModal({ show, onHide, activeDay }) {
                   style={{
                     borderBottom: "solid",
                     borderTop: "solid",
-                    marginTop: "0",
+                    marginTop: "10px",
+                    backgroundColor: "#5d98b1ff",
+                    borderRadius: "10px",
+                    padding: "5px",
                   }}>
                   <div className="d-flex justify-content-start mt-4 mb-0">
                     <div className="d-flex justify-content-center mx-2">
@@ -113,7 +116,7 @@ function MyVerticallyCenteredModal({ show, onHide, activeDay }) {
                   <div
                     style={{
                       minHeight: "10vh",
-                      minWidth: "30vw",
+                      minWidth: "25vw",
                       border: "solid",
                       borderRadius: "10px",
                     }}

@@ -46,30 +46,35 @@ export default function NewsPage() {
               <SwiperSlide className="p-4">
                 <Container
                   key={index}
-                  className="news-row d-flex justify-content-center align-items-center rounded-4"
+                  className="d-grid justify-content-center align-items-center rounded-4 p-2"
                   style={{
                     minHeight: "80vh",
-                    minWidth: "20vw",
                     backgroundColor: "#928DAB",
+                    gridTemplateRows: "auto 1fr",
                   }}>
-                  <Col sm={4} className="">
-                    {article.urlToImage ? (
-                      <img
-                        src={article.urlToImage}
-                        alt=""
-                        style={{ width: "90%", height: "50%" }}
-                      />
-                    ) : (
-                      <p>No Image Available</p>
-                    )}
-                  </Col>
-                  <Col sm={6} className="">
+                  <Row className="mt-2">
                     <h3 className="fs-5">{article.title}</h3>
-                    <span className="fs-5">{article.description}</span>
-                    <a href={article.url} target="_blank">
-                      Read More
-                    </a>
-                  </Col>
+                  </Row>
+                  <Row className="d-flex justify-content-center align-items-center">
+                    <Col sm={4} className="">
+                      {article.urlToImage ? (
+                        <img
+                          src={article.urlToImage}
+                          alt=""
+                          style={{ width: "90%", height: "50%" }}
+                        />
+                      ) : (
+                        <p>No Image Available</p>
+                      )}
+                    </Col>
+                    <Col sm={6} className="">
+                      <span className="fs-5">{article.description}</span>
+                      <a href={article.url} target="_blank">
+                        Read More
+                      </a>
+                      <h5>{article.author}</h5>
+                    </Col>
+                  </Row>
                 </Container>
               </SwiperSlide>
             ))
