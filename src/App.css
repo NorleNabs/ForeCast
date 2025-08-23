@@ -110,3 +110,8 @@
 .fc-daygrid-day-number {
   color: rgb(255, 255, 255);
 }
+
+.fc-daygrid-day-frame {
+  max-height: 70px;
+  overflow-y: hidden;
+}

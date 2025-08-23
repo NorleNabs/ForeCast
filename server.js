@@ -108,8 +108,11 @@ app.get("/api/users/:id/todo", async (req, res) => {
 
     if (!user) return res.status(404).json({ message: "User not found" });
 
+    console.log("Fetched todos for user:", userId, user.todo); // 👈 log to terminal
+
     res.json(user.todo || []);
   } catch (err) {
+    console.error("Error fetching todos:", err.message); // 👈 log errors too
     res.status(500).json({ message: err.message });
   }
 });

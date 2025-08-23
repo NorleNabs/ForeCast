@@ -96,10 +96,15 @@ function MyVerticallyCenteredModal({ show, onHide, activeDay }) {
                       <span className="fw-bold">To - </span>
                       <p>{todo.Totime}</p>
                     </div>
-                    <div className="">
+                    <div className="ms-auto">
                       <button
                         className="text-end"
-                        onClick={() => handleDelete(todo._id)}>
+                        onClick={() => handleDelete(todo._id)}
+                        style={{
+                          border: "none",
+                          backgroundColor: "transparent",
+                          color: "red",
+                        }}>
                         Remove
                       </button>
                     </div>
@@ -110,6 +115,7 @@ function MyVerticallyCenteredModal({ show, onHide, activeDay }) {
                       minHeight: "10vh",
                       minWidth: "30vw",
                       border: "solid",
+                      borderRadius: "10px",
                     }}
                     className="mb-4">
                     <p className="mx-2">{todo.task}</p>

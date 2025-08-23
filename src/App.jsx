@@ -18,7 +18,7 @@ import Col from "react-bootstrap/Col";
 import Container from "react-bootstrap/Container";
 import LoginPage from "./LogIn/LogIn";
 import Calendar from "./MainComponents/Calendar";
-import NewsPage from "./NewsPage";
+import NewsPage from "./MainComponents/NewsPage";
 
 function App() {
   const [isLoggedIn, setIsLoggedIn] = useState(() => {

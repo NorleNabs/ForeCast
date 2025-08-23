@@ -49,6 +49,9 @@ function NewsCardComponent() {
               <Col sm={8} className="">
                 <h3 className="fs-5">{article.title}</h3>
                 <span className="fs-5">{article.description}</span>
+                <a href={article.url} target="_blank">
+                  Read More
+                </a>
               </Col>
             </Row>
           ))

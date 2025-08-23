@@ -42,6 +42,20 @@ export default function Calendar() {
     // alert(arg.dateStr);
   };
 
+  function convertTo24Hour(timeStr) {
+    const [time, modifier] = timeStr.split(" ");
+    let [hours, minutes] = time.split(":");
+
+    if (hours === "12") {
+      hours = "00";
+    }
+    if (modifier === "PM") {
+      hours = String(parseInt(hours, 10) + 12);
+    }
+
+    return `${hours.padStart(2, "0")}:${minutes}:00`;
+  }
+
   console.log(
     todos.map((todo) => ({
       id: todo._id,
@@ -59,12 +73,39 @@ export default function Calendar() {
         dateClick={handleDateClick}
         events={todos}
         eventDataTransform={(todo) => {
+          const start = `${todo.date}T${convertTo24Hour(todo.Fromtime)}`;
+          const end = todo.Totime
+            ? `${todo.date}T${convertTo24Hour(todo.Totime)}`
+            : null;
+
           return {
-            id: todo.id,
+            id: todo._id,
             title: todo.task || "Untitled Todo",
-            start: todo.date || todo.Fromtime, // ✅ must exist
-            end: todo.Totime || null, // optional
+            start,
+            end,
+            fromTime: todo.Fromtime || "",
+            toTime: todo.Totime || "",
           };
+        }}
+        eventContent={(eventInfo) => {
+          const { title, extendedProps } = eventInfo.event;
+          return (
+            <div
+              style={{
+                backgroundColor: "#6fbcecff",
+                borderRadius: "8px",
+                padding: "2px",
+                color: "white",
+                width: "100%",
+              }}>
+              <b>{title}</b>
+              {extendedProps.fromTime && extendedProps.toTime && (
+                <div style={{ fontSize: "0.8em" }}>
+                  {extendedProps.fromTime} - {extendedProps.toTime}
+                </div>
+              )}
+            </div>
+          );
         }}
       />
       <MyVerticallyCenteredModal

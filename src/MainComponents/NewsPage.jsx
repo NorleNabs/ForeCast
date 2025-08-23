@@ -66,12 +66,17 @@ export default function NewsPage() {
                   <Col sm={6} className="">
                     <h3 className="fs-5">{article.title}</h3>
                     <span className="fs-5">{article.description}</span>
+                    <a href={article.url} target="_blank">
+                      Read More
+                    </a>
                   </Col>
                 </Container>
               </SwiperSlide>
             ))
           ) : (
-            <p>Loading news...</p>
+            <p style={{ color: "white", fontSize: "2rem" }}>
+              Loading New, Please Wait....
+            </p>
           )}
         </Swiper>
 
