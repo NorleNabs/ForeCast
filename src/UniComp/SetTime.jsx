@@ -23,7 +23,6 @@ function SetTime({
   FromselectedTimeFrame,
   setFromSelectedTimeFrame,
   modalDate,
-  setModalDate,
 }) {
   const handleToSelectHour = (eventKey) => {
     setToSelectedHour(eventKey);
@@ -51,13 +50,6 @@ function SetTime({
 
   console.log("Modal today", modalDate);
 
-  const currentTime = new Date().toLocaleTimeString("en-PH", {
-    timeZone: "Asia/Manila",
-    hour: "2-digit",
-    minute: "2-digit",
-    hour12: true,
-  });
-
   const today = new Date();
   const formattedDate = today.toLocaleDateString("en-PH", {
     month: "long",
@@ -78,9 +70,6 @@ function SetTime({
       setFromSelectedTimeFrame(period);
     }
   }, [modalDate, formattedDate, setFromSelectedTimeFrame]);
-
-  const currentHour = parseInt(currentTime.split(":")[0], 10);
-  const currentMinute = parseInt(currentTime.split(":")[1], 10);
 
   const TohoursOption = [];
   for (let i = 1; i <= 12; i++) {

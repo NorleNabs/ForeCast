@@ -10,22 +10,22 @@ export default function Calendar() {
   const [activeDay, setActiveDay] = useState(null);
   const [todos, setTodos] = useState([]);
 
-  useEffect(() => {
-    const fetchTodos = async () => {
-      try {
-        const user = JSON.parse(localStorage.getItem("user"));
-        const res = await fetch(
-          `http://localhost:8000/api/users/${user.id}/todo`
-        );
-        const data = await res.json();
-        console.log("Fetched todos:", data);
-        setTodos(data);
-      } catch (err) {
-        console.error("Failed to fetch todos:", err);
-      }
-    };
+  const GetTodos = async () => {
+    try {
+      const user = JSON.parse(localStorage.getItem("user"));
+      const res = await fetch(
+        `http://localhost:8000/api/users/${user.id}/todo`
+      );
+      const data = await res.json();
+      console.log("Fetched todos:", data);
+      setTodos(data);
+    } catch (err) {
+      console.error("Failed to fetch todos:", err);
+    }
+  };
 
-    fetchTodos();
+  useEffect(() => {
+    GetTodos();
   }, []);
 
   const date = new Date();
@@ -112,6 +112,7 @@ export default function Calendar() {
         show={modalShow}
         onHide={() => setModalShow(false)}
         activeDay={activeDay}
+        GetTodos={GetTodos}
       />
       ;
     </Container>

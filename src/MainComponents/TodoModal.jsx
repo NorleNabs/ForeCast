@@ -4,8 +4,10 @@ import React, { useEffect, useState } from "react";
 import { Button } from "react-bootstrap";
 import { FaPlus } from "react-icons/fa";
 import AddToDoModal from "./AddToDoModal";
+import { CiCircleRemove } from "react-icons/ci";
+import { MdOutlineEdit } from "react-icons/md";
 
-function MyVerticallyCenteredModal({ show, onHide, activeDay }) {
+function MyVerticallyCenteredModal({ show, onHide, activeDay, GetTodos }) {
   const [modalShow, setModalShow] = useState(false);
   const [todos, setTodos] = useState([]);
   const user = JSON.parse(localStorage.getItem("user"));
@@ -52,6 +54,7 @@ function MyVerticallyCenteredModal({ show, onHide, activeDay }) {
       console.log("Updated user:", updatedUser);
 
       // refresh todos in UI
+      await GetTodos();
       await fetchTodos();
     } catch (err) {
       console.error("Error deleting task:", err.message);
@@ -101,14 +104,23 @@ function MyVerticallyCenteredModal({ show, onHide, activeDay }) {
                     </div>
                     <div className="ms-auto">
                       <button
-                        className="text-end"
+                        className="text-end fs-4"
+                        style={{
+                          border: "none",
+                          backgroundColor: "transparent",
+                          color: "blue",
+                        }}>
+                        <MdOutlineEdit />
+                      </button>
+                      <button
+                        className="text-end fs-4"
                         onClick={() => handleDelete(todo._id)}
                         style={{
                           border: "none",
                           backgroundColor: "transparent",
                           color: "red",
                         }}>
-                        Remove
+                        <CiCircleRemove />
                       </button>
                     </div>
                   </div>
@@ -137,6 +149,7 @@ function MyVerticallyCenteredModal({ show, onHide, activeDay }) {
           onHide={() => setModalShow(false)}
           todaydate={activeDay}
           fetchTodos={fetchTodos}
+          GetTodos={GetTodos}
         />
       </Modal.Body>
 

@@ -3,8 +3,9 @@ import SetTime from "../UniComp/SetTime";
 import React, { useEffect, useState } from "react";
 import { Button, Form } from "react-bootstrap";
 import { FaPlus } from "react-icons/fa";
+import { get } from "mongoose";
 
-function AddToDoModal({ show, onHide, todaydate, fetchTodos }) {
+function AddToDoModal({ show, onHide, todaydate, fetchTodos, GetTodos }) {
   const [ToselectedHour, setToSelectedHour] = useState("12");
   const [ToselectedMinute, setToSelectedMinute] = useState("00");
   const [ToselectedTimeFrame, setToSelectedTimeFrame] = useState("PM");
@@ -18,7 +19,7 @@ function AddToDoModal({ show, onHide, todaydate, fetchTodos }) {
   const handleSave = async () => {
     const TofullTime = `${ToselectedHour}:${ToselectedMinute} ${ToselectedTimeFrame}`;
     const FromfullTime = `${FromselectedHour}:${FromselectedMinute} ${FromselectedTimeFrame}`;
-    const today = new Date().toLocaleDateString(); // or use a proper date input if needed
+
     const userId = user?.id;
     console.log(userId);
 
@@ -41,6 +42,7 @@ function AddToDoModal({ show, onHide, todaydate, fetchTodos }) {
 
       if (!response.ok) throw new Error("Failed to add task");
       const updatedUser = await response.json();
+      await GetTodos();
       await fetchTodos();
       console.log("Updated user:", updatedUser);
       onHide(); // Close modal
